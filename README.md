@@ -110,3 +110,22 @@
 	^O      ^Y      ^D      <undef> <undef> ^?      ^C      ^U      ^V
 	min     quit    reprint start   status  stop    susp    time    werase
 	1       ^\      ^R      ^Q      ^T      ^S      ^Z      0       ^W
+
+---
+
+	perl -p -i -e 's/<javac/<javac source="1.6" target="1.6"/' `find . -name '*build*.xml' -print`
+
+---
+
+	[weli@dhcp-66-78-87 jbossts]$ yum repolist
+	Loaded plugins: product-id, rhnplugin, subscription-manager
+	Not root, certificate-based repositories not updated
+	*Note* Red Hat Network repositories are not listed below. You must run this command as root to access RHN repositories.
+	brew                                                                                                                                                                                         | 1.9 kB     00:00
+	rhpkg                                                                                                                                                                                        |  951 B     00:00
+	rhpkg/primary                                                                                                                                                                                | 8.6 kB     00:00
+	rhpkg                                                                                                                                                                                                         39/39
+	repo id                                                                    repo name                                                                                                                          status
+	brew                                                                       Brew Buildsystem for Red Hat Enterprise Linux 6Server - x86_64                                                                     17
+	rhpkg                                                                      rhpkg for Red Hat Enterprise Linux 6Server                                                                                         39
+	repolist: 56
