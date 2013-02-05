@@ -171,4 +171,86 @@ echo -e will evaluate the string:
 	mini:learnbash weinanli$ ls -l $(type -path -all ruby)
 	lrwxr-xr-x  1 root  wheel  76 Nov 17 00:30 /usr/bin/ruby -> ../../System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby
 
+---
+
+	mini:projs weinanli$ who
+	wilin    console  Feb  4 09:27
+	weinanli console  Feb  2 16:41
+	weinanli ttys000  Feb  5 13:49
+	weinanli ttys001  Feb  5 16:12
+	weinanli ttys002  Feb  5 23:14
+	weinanli ttys003  Feb  5 14:25
+	mini:projs weinanli$ who | cut -d' ' -f1
+	wilin
+	weinanli
+	weinanli
+	weinanli
+	weinanli
+	weinanli
+	mini:projs weinanli$ echo $(who | cut -d' ' -f1)
+	wilin weinanli weinanli weinanli weinanli weinanli
+
+---
+
+	mini:learnbash weinanli$ ls -l | cut -c10
+
+	-
+	-
+	-
+	x
+	mini:learnbash weinanli$ ls -l | cut -c10-
+
+	-@ 1 weinanli  staff  5897 Feb  5 23:24 README.md
+	-  1 weinanli  staff    23 Jun 11  2012 arg.sh
+	-  1 weinanli  staff  1052 Jun 11  2012 dollar.sh
+	x@ 1 weinanli  staff    96 Feb  5 23:31 lsd
+	mini:learnbash weinanli$ ls -l
+	total 40
+	-rw-r--r--@ 1 weinanli  staff  5897 Feb  5 23:24 README.md
+	-rw-r--r--  1 weinanli  staff    23 Jun 11  2012 arg.sh
+	-rw-r--r--  1 weinanli  staff  1052 Jun 11  2012 dollar.sh
+	-rwxr-xr-x@ 1 weinanli  staff    96 Feb  5 23:31 lsd
+	mini:learnbash weinanli$
+
+---
+
+	mini:learnbash weinanli$ cd ..
+	mini:projs weinanli$ cd -
+	/Users/weinanli/projs/learnbash
+	mini:learnbash weinanli$ cd -
+	/Users/weinanli/projs
+	mini:projs weinanli$ cd -
+	/Users/weinanli/projs/learnbash
+
+---
+
+	mini:learnbash weinanli$ kill -l
+	 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL
+	 5) SIGTRAP	 6) SIGABRT	 7) SIGEMT	 8) SIGFPE
+	 9) SIGKILL	10) SIGBUS	11) SIGSEGV	12) SIGSYS
+	13) SIGPIPE	14) SIGALRM	15) SIGTERM	16) SIGURG
+	17) SIGSTOP	18) SIGTSTP	19) SIGCONT	20) SIGCHLD
+	21) SIGTTIN	22) SIGTTOU	23) SIGIO	24) SIGXCPU
+	25) SIGXFSZ	26) SIGVTALRM	27) SIGPROF	28) SIGWINCH
+	29) SIGINFO	30) SIGUSR1	31) SIGUSR2
+
+---
+
+	mini:learnbash weinanli$ cat trap
+	#!/bin/bash
+	trap "echo 'intr'" INT
+	while true; do
+		sleep 60
+	done
+
+	mini:learnbash weinanli$ ./trap
+	^Cintr
+	^Z
+	[1]+  Stopped                 ./trap
+	mini:learnbash weinanli$ kill -9 %1
+
+	[1]+  Stopped                 ./trap
+	mini:learnbash weinanli$ fg
+	-bash: fg: job has terminated
+	[1]+  Killed: 9               ./trap
 

@@ -1,0 +1,6 @@
+#!/bin/bash
+trap "echo 'intr'" INT
+while true; do
+	sleep 60
+done
+
