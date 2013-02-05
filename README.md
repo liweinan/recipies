@@ -128,4 +128,47 @@
 	repo id                                                                    repo name                                                                                                                          status
 	brew                                                                       Brew Buildsystem for Red Hat Enterprise Linux 6Server - x86_64                                                                     17
 	rhpkg                                                                      rhpkg for Red Hat Enterprise Linux 6Server                                                                                         39
-	repolist: 56
+	repolist: 56	
+
+---
+
+echo -e will evaluate the string:
+
+	mini:learnbash weinanli$ echo  ${PATH//:/'\n'}
+	/opt/local/lib/postgresql92/bin\n/opt/local/bin\n/opt/local/sbin\n/usr/bin\n/bin\n/usr/sbin\n/sbin\n/usr/local/bin\n/opt/X11/bin\n/Users/weinanli/.rvm/bin
+
+	mini:learnbash weinanli$ echo -e ${PATH//:/'\n'}
+	/opt/local/lib/postgresql92/bin
+	/opt/local/bin
+	/opt/local/sbin
+	/usr/bin
+	/bin
+	/usr/sbin
+	/sbin
+	/usr/local/bin
+	/opt/X11/bin
+	/Users/weinanli/.rvm/bin
+
+---
+
+	mini:learnbash weinanli$ echo -e ${#PATH}
+	145
+
+---
+
+	mini:learnbash weinanli$ ls !(d*)
+	README.md arg.sh
+	mini:learnbash weinanli$ ls
+	README.md arg.sh    dollar.sh
+
+---
+
+	mini:learnbash weinanli$ ls -l $(type -path -all ruby)
+	lrwxr-xr-x  1 root  wheel  76 Nov 17 00:30 /usr/bin/ruby -> ../../System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby
+
+---
+
+	mini:learnbash weinanli$ ls -l $(type -path -all ruby)
+	lrwxr-xr-x  1 root  wheel  76 Nov 17 00:30 /usr/bin/ruby -> ../../System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby
+
+
