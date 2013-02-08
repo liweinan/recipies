@@ -267,3 +267,5 @@ echo -e will evaluate the string:
 	+ ls -v -G -l /usr/bin/vi
 	lrwxr-xr-x  1 root  wheel  3 Nov 17 00:24 /usr/bin/vi -> vim
 
+---
+
