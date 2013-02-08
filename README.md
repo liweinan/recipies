@@ -254,3 +254,16 @@ echo -e will evaluate the string:
 	-bash: fg: job has terminated
 	[1]+  Killed: 9               ./trap
 
+---
+
+	mini:learnbash weinanli$ set -o xtrace
+	mini:learnbash weinanli$ alice=girl
+	+ alice=girl
+	mini:learnbash weinanli$ echo "$alice"
+	+ echo girl
+	girl
+	mini:learnbash weinanli$ ls -l $(type -path vi)
+	++ type -path vi
+	+ ls -v -G -l /usr/bin/vi
+	lrwxr-xr-x  1 root  wheel  3 Nov 17 00:24 /usr/bin/vi -> vim
+
