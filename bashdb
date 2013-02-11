@@ -1,5 +1,4 @@
 #!/bin/bash
-#set -o xtrace
 _dbname=${0##*/} #equal to basename
 
 if (($#<1)) ; then

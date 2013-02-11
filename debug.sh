@@ -10,10 +10,12 @@ function world
     badvar="world"
 }
 
-set -o functrace
-trap dbgtrap DEBUG
+#set -o functrace
+#trap dbgtrap DEBUG
 badvar="Hello"
+echo $badvar
 world
-trap - DEBUG
-set +o functrace
+#trap - DEBUG
+#set +o functrace
+echo $badvar
 badvar=
