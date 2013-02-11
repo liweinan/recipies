@@ -1,6 +1,8 @@
 function dbgtrap
 {
     echo "badvar is $badvar"
+    echo "line: "$BASH_LINENO
+    echo "source: "$BASH_SOURCE
 }
 
 function world
@@ -8,9 +10,10 @@ function world
     badvar="world"
 }
 
-trap dbgtrap DEBUG
 set -o functrace
+trap dbgtrap DEBUG
 badvar="Hello"
 world
-set +o functrace
 trap - DEBUG
+set +o functrace
+badvar=

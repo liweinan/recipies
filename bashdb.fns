@@ -1,0 +1,184 @@
+#set -o xtrace
+function _steptrap
+{
+   _curline=$1
+   (($_trace)) && _msg "$PS4 line $_curline: ${_lines[$_curline]}"
+
+   if (($_steps >= 0)); then
+      let _steps="$_steps - 1"
+   fi
+
+   if _at_linenumbp; then
+      _msg "Reached breakpoint at line $_curline"
+      _cmdloop
+   elif [ -n "$_brcond" ] && eval $_brcond; then
+      _msg "Break condition $_brcond true at line $_curline"
+      _cmdloop
+   elif (($_steps==0)); then
+      _msg "Stopped at line $_curline"
+      _cmdloop
+   fi
+}
+
+function _cmdloop {
+   local cmd args
+
+   while read -e -p "bashdb> " cmd args; do
+      case $cmd in
+         \? | h ) _menu ;;
+         bc ) _setbc $args ;;
+         bp ) _setbp $args ;;
+         cb ) _clearbp $args ;;
+         ds ) _displayscript ;;
+         g ) return ;;
+         q ) exit ;;
+         s ) let _steps=${args:-1}
+             return ;;
+         x ) _xtrace ;;
+         * ) eval ${cmd#!} $args ;;
+         * ) _msg "Invalid command: '$cmd'" ;;
+      esac
+   done
+}
+
+function _at_linenumbp
+{
+   local i=0
+   if [ "$_linebp" ]; then
+      while (($i < ${#_linebp[@]})); do
+         if ((${_linebp[$i]} == $_curline)); then
+            return 0
+         fi
+         let i=$i+1
+      done
+   fi
+   return 1
+}
+
+function _setbp
+{
+   local i
+   if [ -z "$1" ]; then
+      _listbp
+   elif [ $(echo $1 | grep '^[0-9]*') ]; then
+      if [ -n "${_lines[$1]}" ]; then
+         _linebp=($(echo $((for i in ${_linebp[*]} $1; do
+            echo $i; done) | sort -n)))
+         _msg "Breakpoint set at line $1"
+      else
+         _msg "Breakpoints can only be set on non-blank lines"
+      fi
+   else
+      _msg "Please specify a numeric line number" 
+   fi
+}
+
+function _listbp
+{
+   if [ -n "$_linebp" ]; then
+      _msg "Breakpoints at lines: ${_linebp[*]}"
+   else
+      _msg "No breakpoints have been set"
+   fi
+   _msg "Break on condition:"
+   _msg "$_brcond"
+} 
+
+function _clearbp
+{
+   local i bps
+   if [ -z "$1" ]; then
+      unset _linebp[*]
+      _msg "All breakpoints have been cleared"
+   elif [ $(echo $1 | grep '^[0-9]*') ]; then
+      bps=($(echo $(for i in ${_linebp[*]}; do
+         if (($1!=$i)); then echo $i; fi; done)))
+      unset _linebp[*]
+      _linebp=(${bps[*]})
+      _msg "Breakpoint cleared at line $1"
+   else
+      _msg "Please specify a numeric line number"
+   fi
+}
+
+function _setbc
+{
+   if [ -n "$*" ]; then
+      _brcond=$args
+      _msg "Break when trun: $_brcond"
+   else
+      _brcond=
+      _msg "Break condition cleared"
+   fi
+}
+
+function _setbc
+{
+   if [ -n "$*" ]; then
+      _brcond=$args
+      _msg "Break when true: $_brcond"
+   else
+      _brcond=
+      _msg "Break condition cleared"
+   fi
+}
+
+function _displayscript
+{
+   local i=1 j=0 bp cl
+   (while (($i < ${#_lines[@]})); do
+      if [ ${_linebp[$j]} ] && ((${_linebp[$j]}==$i)); then
+         bp='*'
+         let j=$j+1
+      else
+         bp=' '
+      fi
+      if (($_curline==$i)); then
+         cl=">"
+      else
+         cl=" "
+      fi
+      echo "$i:$bp $cl ${_lines[$i]}"
+      let i=$i+1
+    done
+   ) | more
+}
+
+function _xtrace
+{
+   let _trace="! $_trace"
+   _msg "Execution trace "
+   if (($_trace)); then
+      _msg "on"
+   else
+      _msg "off"
+   fi
+}
+
+function _msg
+{
+   echo -e "$@" >&2
+}
+
+function _menu {
+   _msg 'bashdb commands:
+      bp N         set breakpoint at line N
+      bp           list breakpoints and break condition
+      bc string    set break condition to string
+      bc           clear break condition
+      cb N         clear breakpoint at line N
+      cb           clear all breakpoints
+      ds           displays the test script and breakpoints
+      g            start/resume execution
+      s [N]        execute N statements (default 1)
+      x            toggle execution trace on/off
+      h, ?         print this menu
+      ! string     passes string to a shell
+      q            quit'
+}
+
+function _cleanup
+{
+   rm $_debugfile 2>/dev/null
+}
+
