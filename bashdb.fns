@@ -19,7 +19,8 @@ function _steptrap
    fi
 }
 
-function _cmdloop {
+function _cmdloop
+{
    local cmd args
 
    while read -e -p "bashdb> " cmd args; do
@@ -34,7 +35,6 @@ function _cmdloop {
          s ) let _steps=${args:-1}
              return ;;
          x ) _xtrace ;;
-         * ) eval ${cmd#!} $args ;;
          * ) _msg "Invalid command: '$cmd'" ;;
       esac
    done
@@ -111,17 +111,6 @@ function _setbc
    fi
 }
 
-function _setbc
-{
-   if [ -n "$*" ]; then
-      _brcond=$args
-      _msg "Break when true: $_brcond"
-   else
-      _brcond=
-      _msg "Break condition cleared"
-   fi
-}
-
 function _displayscript
 {
    local i=1 j=0 bp cl
@@ -159,7 +148,8 @@ function _msg
    echo -e "$@" >&2
 }
 
-function _menu {
+function _menu
+{
    _msg 'bashdb commands:
       bp N         set breakpoint at line N
       bp           list breakpoints and break condition
