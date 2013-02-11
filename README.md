@@ -269,3 +269,11 @@ echo -e will evaluate the string:
 
 ---
 
+    mini:learnbash weinanli$ [ 1 -lt 0 ]
+	mini:learnbash weinanli$ echo $?
+	1
+	mini:learnbash weinanli$ [ 1 -lt 2 ]
+	mini:learnbash weinanli$ echo $?
+	0
+
+
