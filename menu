@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+_fruits='Apple Pear Tomato'
+select _fruit in $_fruits; do
+	echo "select: "$_fruit
+	if [ $_fruit ]; then
+		echo $REPLY
+		break
+	else
+		echo 'invalid selection.'
+	fi
+done
