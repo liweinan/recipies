@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+echo 'Select a fruit: '
+_done=false
+_fruits="Apple Tomato Cucumber"
+while [ $_done = false ]; do
+	_do=true
+	_num=1
+	for _fruit in $_fruits; do
+		echo "$_num) $_fruit"
+		_num=$((_num+1))
+	done
+	echo -n 'fruit? '
+	read REPLY
+
+	if [ -n "$REPLY" ] && [ $(($REPLY)) -lt $_num ] && [ $(($REPLY)) -gt 0 ]; then
+		echo $REPLY
+		break
+	else
+		echo 'invalid selection.'
+	fi
+done
