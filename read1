@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+read a b c
+echo $a
+echo $b
+echo $c

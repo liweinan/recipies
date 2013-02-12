@@ -20,3 +20,18 @@ mypopd()
       echo "stack empty, still in $PWD."
    fi
 }
+
+getNdirs()
+{
+   stackfront=''
+   let count=0
+   while [ $count -le $1 ]; do
+      target=${DIR_STACK%${DIR_STACK#* }}
+      stackfront="$stackfront$target"
+      DIR_STACK=${DIR_STACK#$target}
+      let count=count+1
+   done
+
+   stackfront=${stackfront%$target}
+}
+

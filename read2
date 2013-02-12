@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+readcol() {
+	while read col1 col2; do
+		echo "$col1- $col2"
+	done
+}
+
+readcol < cols.txt 

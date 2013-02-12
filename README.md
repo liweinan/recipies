@@ -276,4 +276,20 @@ echo -e will evaluate the string:
 	mini:learnbash weinanli$ echo $?
 	0
 
+---
+
+	mini:learnbash weinanli$ od -x testread
+	0000000      2123    2824    6877    6369    2068    6162    6873    0a29
+	             ^^^^ 0x21 0x23 is magic number
+	             http://en.wikipedia.org/wiki/Shebang_%28Unix%29
+	0000020      6572    6461    6120    6220    6320    650a    6863    206f
+	0000040      6124    650a    6863    206f    6224    650a    6863    206f
+	0000060      6324    000a
+	0000063
+	mini:learnbash weinanli$ head testread
+	#!$(which bash)
+	read a b c
+	echo $a
+	echo $b
+	echo $c
 
