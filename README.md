@@ -293,3 +293,12 @@ echo -e will evaluate the string:
 	echo $b
 	echo $c
 
+---
+
+	[weli@li565-148 ~]$ str="mail:8"
+	[weli@li565-148 ~]$ echo ${str#*:}
+	8
+	[weli@li565-148 ~]$ echo ${str%:*}
+	mail
+
+

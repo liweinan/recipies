@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+declare -r a=1
+a=2
+echo $a
+

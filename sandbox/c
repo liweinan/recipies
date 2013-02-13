@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+_names=([2]=alice [0]=hatter [1]=duchess)
+echo ${_names[@]} # all the elements
+echo ${#_names[1]} # ducess = length 7
+echo ${!_names[@]} # which indices have values
