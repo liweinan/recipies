@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+_vals=(a b c)
+i=1
+_vals[i]=d
+echo  "${_vals[$i]}"

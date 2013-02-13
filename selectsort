@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+_vals=(39 5 36 12 9 3 2 30 4 18 22 1 28 25)
+_length=${#_vals[@]}
+
+echo "BEFORE: ${_vals[@]}"
+
+for (( i=0; i < _length; i++ )); do
+	_lowest=$i
+
+	for (( j=i; j < _length; j++)); do
+		if [ ${_vals[j]} -le ${_vals[_lowest]} ]; then
+			_lowest=$j
+		fi
+	done
+
+	_tmp=${_vals[i]}
+	_vals[i]=${_vals[_lowest]}
+	_vals[_lowest]=$_tmp
+done
+
+echo -n "AFTER:  "
+for (( i=0; i < _length; i++ )); do
+	echo -ne "${_vals[i]} "
+done
+
+echo
+
