@@ -301,4 +301,8 @@ echo -e will evaluate the string:
 	[weli@li565-148 ~]$ echo ${str%:*}
 	mail
 
+---
 
+	mini:~ weinanli$ set -r
+	mini:~ weinanli$ cd ~projs
+	-bash: cd: restricted
