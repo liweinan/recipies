@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+abc() {
+	_outside="ABC"
+	local _inside="XYZ"
+}
+
+abc
+echo "INSIDE: $_inside"
+echo "OUTSIDE: $_outside"

@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+nice_number()
+{
+	integer=$(echo $1 | cut -d. -f1)
+	decimal=$(echo $1 | cut -d. -f2)
+
+	if [ $decimal != $1 ] ; then
+		result="${DD:='.'}$decimal"
+	fi
+
+	thousands=$integer
+
+	while [ $thousands -gt 999 ] ; do
+		remainder=$(($thousands % 1000))
+
+		while [ ${#remainder} -lt 3 ] ; do
+			remainder="0$remainder"
+		done
+		
+		thousands=$(($thousands / 1000))
+		result="${TD:=','}${remainder}${result}"
+	done
+	
+	nice_num="${thousands}${result}"
+	if [ ! -z $2 ] ; then
+		echo $nice_num
+	fi
+}
+
+DD="." # decimal point delimiter, to separate integer and fractional values
+TD="," # thousands delimiter, to separate every three digits
+
+while getopts "d:t:" opt; do
+  case $opt in
+    d ) DD="$OPTARG"    ;;
+    t ) TD="$OPTARG"    ;;
+  esac
+done
+shift $(($OPTIND - 1))
+
+if [ $# -eq 0 ] ; then
+  echo "Usage: $(basename $0) [-d c] [-t c] numeric value"
+  echo "  -d specifies the decimal point delimiter (default '.')"
+  echo "  -t specifies the thousands delimiter (default ',')"
+  exit 0
+fi
+
+nice_number $1 1         # second arg forces nicenumber to 'echo' output
+
+exit 0

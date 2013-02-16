@@ -306,3 +306,27 @@ echo -e will evaluate the string:
 	mini:~ weinanli$ set -r
 	mini:~ weinanli$ cd ~projs
 	-bash: cd: restricted
+
+---
+
+	mini:~ weinanli$ let a=1+2
+	mini:~ weinanli$ echo $a
+	3
+	mini:~ weinanli$ let a=1 + 2
+	-bash: let: +: syntax error: operand expected (error token is "+")
+	mini:~ weinanli$ let a=`1 + 2`
+	-bash: 1: command not found
+	-bash: let: a=: syntax error: operand expected (error token is "=")
+	mini:~ weinanli$ let a=$((1 + 2))
+	mini:~ weinanli$ echo $a
+	3
+	mini:~ weinanli$ `1+2`
+	-bash: 1+2: command not found
+	mini:~ weinanli$ let a='1 + 2'
+	mini:~ weinanli$ echo $a
+	3
+
+---
+
+	mini:~ weinanli$ echo "abc-d" | sed -e 's/[^[:alnum:]]//g'
+	abcd

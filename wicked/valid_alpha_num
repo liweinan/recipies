@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+valid_alpha_num()
+{
+	compressed="$(echo $1 | sed -e 's/[^[:alnum:]]//g')"
+	if [ "$compressed" != "$input" ] ; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+echo -n "Enter input: "
+read input
+
+if ! valid_alpha_num "$input" ; then
+	echo "Invalid"
+	exit 1
+else
+	echo "Valid"
+fi
+
+exit 0
