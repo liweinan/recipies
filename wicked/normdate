@@ -20,7 +20,7 @@ month_to_name()
 }
 
 if [ $# -ne 3 ] ; then
-	echo "Usage: $0 month day year" >$2
+	echo "Usage: $0 month day year" >&2
 	echo "Typical input formats are August 3 1962 and 8 3 2002" >&2
 	exit 1
 fi
