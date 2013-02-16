@@ -1,0 +1,5 @@
+. inpath
+. valid_int
+. valid_date
+. color
+. echon
