@@ -113,6 +113,15 @@
 
 ---
 
+	mini:learnbash weinanli$ ipcs -s
+	IPC status from <running system> as of Sun Feb 17 22:23:17 CST 2013
+	T     ID     KEY        MODE       OWNER    GROUP
+	Semaphores:
+	s  65536 0x0008ceb7 --ra-ra-ra- weinanli    staff
+	s  65537 0x0008ceb8 --ra-ra-ra- weinanli    staff
+
+---
+
 	perl -p -i -e 's/<javac/<javac source="1.6" target="1.6"/' `find . -name '*build*.xml' -print`
 
 ---
