@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# newrm, a replacement for the existing rm command, provides a
+#   rudimentary unremove capability by creating and utilizing a new
+#   directory within the user's home directory. It can handle directories
+#   of content as well as individual files, and if the user specifies
+#   the -f flag files are removed and NOT archived.
+
+# Big Important Warning: You'll want a cron job or something similar to keep
+#   the trash directories tamed. Otherwise nothing will ever actually
+#   be deleted from the system and you'll run out of disk space!
+
+mydir="$HOME/.deleted-files"
+realrm="$(which rm)"
+copy="$(which cp) -R"
+
+if [ $# -eq 0 ] ; then # let 'rm' ouptut the usage error
+  exec $realrm # our shell is replaced by /bin/rm
+fi
+
+# Parse all options looking for '-f'
+flags=""
+
+while getopts "dfiPRrvW" opt
+do
+  case $opt in
+    f) exec $realrm "$@"      ;;  # exec lets us exit this script directly.
+    *) flags="$flags -$opt"   ;;  # other flags are for 'rm', not us
+  esac
+done
+shift $(($OPTIND - 1))
+
+# Make sure that the $mydir exists
+
+if [ ! -d $mydir ] ; then
+  if [ ! -w $HOME ] ; then
+    echo "$0 failed: can't create $mydir in $HOME" >&2
+    exit 1
+  fi
+  mkdir -p $mydir
+  chmod 700 $mydir      # a little bit of privacy, please
+fi
+
+for arg
+do
+  newname="$mydir/$(date "+%S.%M.%H.%d.%m").$(basename "$arg")"
+  if [ -f "$arg" ] ; then
+    $copy "$arg" "$newname"
+  elif [ -d "$arg" ] ; then
+    $copy "$arg" "$newname"
+  fi
+done
+
+exec $realrm $flags "$@"        # our shell is replaced by realrm
