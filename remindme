@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# remindme - Searches a data file for matching lines, or shows the entire contents
+#   of the data file if no argument is specified.
+
+rememberfile="$HOME/.remember"
+
+if [ $# -eq 0 ] ; then
+  more $rememberfile
+else
+  grep -i "$@" $rememberfile | ${PAGER:-more}
+fi
+
+exit 0
