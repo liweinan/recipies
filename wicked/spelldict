@@ -10,7 +10,7 @@ okaywords="$basedir/okaywords"
 tempout="/tmp/spell.tmp.$$"
 spell="aspell"                  # tweak as needed
 
-trap "$(/usr/bin/env rm) -f $tempout" EXIT
+trap "$(which rm) -f $tempout" EXIT
 
 if [ -z "$1" ] ; then
   echo "Usage: spell file|URL" >&2; exit 1
