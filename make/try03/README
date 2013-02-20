@@ -1,0 +1,5 @@
+STEPS:
+
+1. autoreconf
+2. ./configure
+3. make 
