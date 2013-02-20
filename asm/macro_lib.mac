@@ -1,0 +1,5 @@
+%macro my_call 2 ; this macro has two vars
+	mov eax, %1 ; copy first var to eax
+	mov ebx, %2 ; copy second var to ebx
+%%label_a: nop ; label name will be expanded to avoid conflict
+%endmacro
