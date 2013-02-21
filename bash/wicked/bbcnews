@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# bbcnews - Reports the top stories on the BBC World Service.
+
+url="http://news.bbc.co.uk/2/low/technology/default.stm"
+
+lynx -source $url | \
+  sed -n '/Last updated/,/Also in the News/p' | \
+  sed 's/</\
+</g;s/>/>\
+/g;s/^[ \t]*//g' | \
+  grep -v -E '(<|>)' | grep -v '\$' | \
+  fmt | recode html..ascii | uniq |  more
