@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+if [ ! -s "abc" ] ; then
+	echo "1"
+fi
+
+if [ -s "g" ] ; then
+	echo "2"
+fi
+
+if [ -s "abc" -o -s "g" ] ; then
+	echo "3"
+fi
+
+if [ -s "abc" ] || [ -s "g" ] ; then
+	echo "4"
+fi
+
+if [ -n $(echo "123abc" | sed 's/[[:digit:]]//g') ] ; then
+	echo "5"
+fi
+
+if [ ! -z $(echo "123abc" | sed 's/[[:digit:]]//g') ] ; then
+	echo "6"
+fi

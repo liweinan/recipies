@@ -1,0 +1,36 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# run-parts
+01 * * * * root run-parts /etc/cron.hourly
+02 4 * * * root run-parts /etc/cron.daily
+22 4 * * 0 root run-parts /etc/cron.weekly
+42 4 1 * * root run-parts /etc/cron.monthly
+
+#indexer
+#0 4 * * * liweinan /backups/index.sh 
+
+#0 21 1-31/2 * * * liweinan curl --silent http://bluedash.net/cron/publish1?key=34eb1eb635f23bbe2f1e46371089c2bd 
+
+#0 4 * * * liweinan curl --silent http://bluedash.net/cron/clear_spam?key=34eb1eb635f23bbe2f1e46371089c2bd
+
+01 * * * * liweinan curl --silent http://bluedash.net/cron/ranking?key=34eb1eb635f23bbe2f1e46371089c2bd 
+
+#12 * * * * liweinan rm -rf /var/www/html/bluedash-trunk/cache/views/
+
+# backup postgres
+# every one hour, at XX:15
+15 * * * * root /backups/pgbackup.sh
+0 4 * * * root rm -rf /var/log/httpd/*
+
+#0 2 * * * liweinan find /var/www/html/bluedash-trunk/public/system -name original -type d | xargs rm -rf 
+
+#0 1 * * * liweinan /backups/watermark.sh
+
+#10 * * * * liweinan /var/www/html/bluedash-trunk/script/runner script/runner -e production SessionCleanup.nuke_old_db_sessions
+
+559 3 2 * * liweinan /var/www/html/bluedash-trunk/script/clear-log.sh 
+
+#1-58/2 * * * * root killall ruby

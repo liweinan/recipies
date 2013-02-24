@@ -16,7 +16,7 @@ validNum()
 
   if [ "$num" = "X" ] ; then
     return 0
-  elif [ ! -s $(echo $num | sed 's/[[:digit:]]//g') ] ; then
+  elif [ -n "$(echo $num | sed 's/[[:digit:]]//g')" ]  ; then
     return 1
   elif [ $num -lt 0 -o $num -gt $max ] ; then
     return 1
@@ -62,7 +62,7 @@ fixvars()
 }
 
 if [ $# -ne 1 ] || [ ! -r $1 ] ; then
-  echo "Usage: $0 usercrontabfile" >&2; exit 1
+  echo "Usage: $(basename $0) usercrontabfile" >&2; exit 1
 fi
 
 lines=0 entries=0 totalerrors=0
@@ -135,7 +135,7 @@ do
   if [ $errors -gt 0 ] ; then
     echo ">>>> ${lines}: $sourceline"
     echo ""
-    totalerrors="$(( $totalerrors + 1 ))"
+    totalerrors="$(($totalerrors + 1))"
   fi
 done < $1
 
