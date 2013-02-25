@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if which ls 1>/dev/null ; then
+	echo 1
+fi

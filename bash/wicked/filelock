@@ -25,7 +25,7 @@ fi
 
 # Ascertain whether we have lockf or lockfile system apps
 
-if [ -z "$(which lockfile | grep -v '^no ')" ] ; then
+if ! which lockfile 1>/dev/null ; then
   echo "$0 failed: 'lockfile' utility not found in PATH." >&2
   exit 1
 fi
