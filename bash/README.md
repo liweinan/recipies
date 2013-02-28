@@ -339,3 +339,11 @@ echo -e will evaluate the string:
 
 	mini:~ weinanli$ echo "abc-d" | sed -e 's/[^[:alnum:]]//g'
 	abcd
+
+---
+
+	mini:~ weinanli$ echo "abc" | tr "abc" "ABC"
+	ABC
+
+---
+
