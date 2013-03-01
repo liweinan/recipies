@@ -1,5 +1,5 @@
-cw: cw.o lexer.o -lfl
-	gcc cw.o lexer.o -lfl -ocw
+cw: cw.o lexer.o 
+	gcc cw.o lexer.o -lfl -ocw  
 
 cw.o: cw.c
 	gcc -c cw.c
