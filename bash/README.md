@@ -347,3 +347,7 @@ echo -e will evaluate the string:
 
 ---
 
+	weli@power:~$ ls a?(.gif)
+	a.gif
+	weli@power:~$ ls a+(.gif)
+	a.gif     a.gif.gif
