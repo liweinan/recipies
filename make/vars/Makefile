@@ -8,3 +8,10 @@ dummy:
 	@echo $(CXX)
 	@echo $(CXXFLAGS)
 	@echo $(TARGET_ARCH)
+
+default: pre pre2 pre2
+	@echo $+
+	@echo $<
+	@echo $^
+	@echo $@
+	@echo $?
