@@ -41,6 +41,9 @@ null.o: null.c
 hostname.o: hostname.c
 	cc hostname.c -o hostname.o
 
+gethostbyaddr: gethostbyaddr.c
+	cc $< -o $@
+
 clean:
 	rm *.o
 	rm *.tmp
