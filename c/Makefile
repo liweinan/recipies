@@ -38,6 +38,9 @@ play_stdarg: stdarg.o
 null.o: null.c
 	cc null.c -o null.o
 
+hostname.o: hostname.c
+	cc hostname.c -o hostname.o
+
 clean:
 	rm *.o
 	rm *.tmp
