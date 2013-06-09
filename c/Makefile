@@ -44,6 +44,9 @@ hostname.o: hostname.c
 gethostbyaddr: gethostbyaddr.c
 	cc $< -o $@
 
+perror: perror.c
+	cc $< -o $@
+
 clean:
 	rm *.o
 	rm *.tmp
