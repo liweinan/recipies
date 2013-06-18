@@ -18,7 +18,7 @@ int main() {
 	printf("&val_a: %d\n", (int) &val_a);
 	printf("pass_by_address(ptr1): %d\n", 	pass_by_address(ptr1));
 	printf("pass_by_value(*ptr1): %d\n", 	pass_by_value(*ptr1));
-	// incorrect usage
+	// incorrect usages
 	printf("pass_by_address(ptr1): %d\n", 	pass_by_address((*ptr1));
 	printf("pass_by_value(*ptr1): %d\n", 	pass_by_value(ptr1));
 	
@@ -28,10 +28,10 @@ int array_pass(int *arr) {
 	return (int) arr;
 }
 
-int pass_by_address(int *ptr) {
+int pass_by_address(int *ptr) { // the parameter passed in will be treated as address
 	return (int) ptr;
 }
 
-int pass_by_value(int val) {
+int pass_by_value(int val) { // the parameter passed in will be treated as value
 	return val;
 }
