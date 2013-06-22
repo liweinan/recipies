@@ -4,4 +4,5 @@ tmp
 *.exe
 *~
 lex.yy.c
-
+\#*.*\#
+a.out

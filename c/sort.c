@@ -13,7 +13,6 @@ void writelines(char *lineptr[], int nlines);
 void q_sort(char *lineptr[], int left, int right);
 int get_line(char *, int);
 
-
 /* sort input lines */
 int main()
 {
