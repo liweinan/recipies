@@ -359,8 +359,8 @@ void des_encrypt( const unsigned char *plaintext,
          void *iv, 
          const unsigned char *key )
 {
-  des_operate( plaintext, plaintext_len, ciphertext, 
-    ( const unsigned char * ) iv, key, OP_ENCRYPT, 0 );
+    des_operate( plaintext, plaintext_len, ciphertext, 
+      ( const unsigned char * ) iv, key, OP_ENCRYPT, 0 );
 }
 
 void des3_encrypt( const unsigned char *plaintext, 
@@ -381,8 +381,10 @@ void des_decrypt( const unsigned char *ciphertext,
 {
   des_operate( ciphertext, ciphertext_len, plaintext, 
     ( const unsigned char * ) iv, key, OP_DECRYPT, 0 );
-  // Remove any padding on the end of the input
-  //plaintext[ ciphertext_len - plaintext[ ciphertext_len - 1 ] ] = 0x0;
+  
+  #ifdef WITH_PADDING // PKCS #5
+    plaintext[ ciphertext_len - plaintext[ ciphertext_len - 1 ] ] = 0x0;
+  #endif  
 }
 
 void des3_decrypt( const unsigned char *ciphertext, 
@@ -397,6 +399,7 @@ void des3_decrypt( const unsigned char *ciphertext,
   //plaintext[ ciphertext_len - plaintext[ ciphertext_len - 1 ] ] = 0x0;
 }
 
+// gcc -DTEST_DES -DWITH_PADDING -o des des.c hex.c
 #ifdef TEST_DES
 int main( int argc, char *argv[ ] )
 {
@@ -428,9 +431,24 @@ int main( int argc, char *argv[ ] )
     }
     else
     {
+      // gcc -DWITH_PADDING
+      #ifdef WITH_PADDING // PKCS #5 padding
+        int padding_len;
+        unsigned char *padded_plaintext;
+        padding_len = DES_BLOCK_SIZE - (input_len % DES_BLOCK_SIZE);
+        padded_plaintext = malloc(input_len+padding_len);
+        memset(padded_plaintext, padding_len, input_len + padding_len);
+        memcpy(padded_plaintext, input, input_len);
+        input = padded_plaintext;
+        out_len = input_len = strlen(input);
+        free(output);
+        output = ( unsigned char * ) malloc( out_len + 1 );
+      #endif
+
       des_encrypt( input, input_len, output, iv, key );
     }
-    show_hex( output, out_len );
+    
+    show_hex(output, out_len);
   } 
   else if ( !( strcmp( argv[ 1 ], "-d" ) ) )
   {
@@ -456,7 +474,6 @@ int main( int argc, char *argv[ ] )
 
   return 0;
 }
-
 #endif
 
 /*

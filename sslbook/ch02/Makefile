@@ -1,6 +1,8 @@
 all: des aes rc4
 
 OPTS = -g -Wall -Wno-pointer-sign
+desp: des.c des.h hex.c hex.h
+	gcc -DTEST_DES -DWITH_PADDING -o des $(OPTS) des.c hex.c
 
 des: des.c des.h hex.c hex.h
 	gcc -DTEST_DES -o des $(OPTS) des.c hex.c
