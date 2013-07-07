@@ -10,6 +10,7 @@ int main(void) {
 	printf("sizeof(char): %d\n", (int) sizeof(char));
 	char chars[3];	
 	printf("sizeof(char[3]): %d\n", (int) sizeof(chars));
+    printf("sizeof(unsigned char): %d\n", (int) sizeof(unsigned char));
 	
 	printf("sizeof(int): %d\n", (int) sizeof(int));
 	printf("sizeof(double): %d\n", (int) sizeof(double));
