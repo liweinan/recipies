@@ -15,4 +15,7 @@ int main(void) {
 	printf("sizeof(int): %d\n", (int) sizeof(int));
 	printf("sizeof(double): %d\n", (int) sizeof(double));
 	
+    printf("0xff + 0xff: %x\n", 0xff + 0xff);
+    int i = 0xffffffff;
+    printf("0xff ff ff ff + i: %x\n", 0xffffffff + i); // overflow
 }
