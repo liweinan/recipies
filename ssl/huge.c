@@ -15,6 +15,22 @@ typedef struct {
     unsigned char *rep;
 } huge;
 
+void left_shift(char* val) {
+	int val_size = strlen(val);
+	int i = val_size;
+	int old_carry, carry = 0;
+	while (i) {
+		i--;
+		old_carry = carry;
+		carry = (val[i] << 1) | old_carry;
+		val[i] = val[i] <<  1;
+	}
+	
+	if (carry) {
+		// expand val;
+	}
+}
+
 void contract (huge *h) {
     int i = 0;
     while (!(h->rep[i]) && (i<h->size)) { i++; }
