@@ -1,34 +1,32 @@
-//
-//  main.c
-//  algorithm
-//
-//  Created by Weinan Li on 7/20/13.
-//  Copyright (c) 2013 Weinan Li. All rights reserved.
-//
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+const char* byte_to_binary(int x) {
+  static char b[9];
+  b[0] = '\0'; // strcat will override it
+
+  int z;
+  // 2^7 = 128. 8 bits
+  for (z = 128; z > 0; z >>= 1) {
+	strcat(b, ((x & z) == z) ? "1" : "0");
+  }
+
+  return b;
+}
 
 typedef struct {
     unsigned int size;
     unsigned char *rep;
 } huge;
 
-void left_shift(char* val) {
-	int val_size = strlen(val);
-	int i = val_size;
-	int old_carry, carry = 0;
-	while (i) {
-		i--;
-		old_carry = carry;
-		carry = (val[i] << 1) | old_carry;
-		val[i] = val[i] <<  1;
-	}
-	
-	if (carry) {
-		// expand val;
-	}
+void expand(huge *h) {
+	unsigned char *tmp = h->rep;
+	h->size++;
+	h->rep = (unsigned char *) calloc (h->size, sizeof(unsigned char));
+	memcpy(h->rep+1, tmp, (h->size - 1) * sizeof(unsigned char));
+	h->rep[0]=0x01;
+	free(tmp);
 }
 
 void contract (huge *h) {
@@ -40,9 +38,26 @@ void contract (huge *h) {
         
         h->rep = (unsigned char*) calloc(h->size-i, sizeof(unsigned char));
         memcpy(h->rep, tmp, h->size-i);
-        
-        
     }
+}
+
+void left_shift(huge *h1) {
+	int i;
+	int old_carry, carry = 0;
+	
+	i = h1->size;
+	
+	do {
+		i--;
+		old_carry = carry;
+		// 1|0 2|0 4|0 8|0 10|0 20|0 40|0 80|128
+		carry = (h1->rep[i] & 0x80) == 0x80;
+		h1->rep[i] = (h1->rep[i]<<1) | old_carry;
+	} while (i);
+	
+	if (carry) {
+		expand(h1);
+	}
 }
 
 int compare(huge *h1, huge *h2) {
@@ -112,26 +127,57 @@ void divide(huge *dividend, huge *divisor, huge *quotient) {
     } while (bit_size--);
 }
 
+void print_huge(huge *h) {
+	int i;
+//     printf("\nh->size: %d\n", h->size);
+    
+    for (i=0; i<h->size; i++) {
+        printf("%s ", byte_to_binary(h->rep[i]));
+    }    
+    printf("\n");
+}
+
+void test_shift_logic() {
+	//j 1|0 2|0 4|0 8|0 10|0 20|0 40|0 80|128
+    printf("\nj ");
+    int j;
+    for (j=1; j<=0x80; j = j << 1) {
+    	printf("%x|%d ", j, j&0x80);
+    }
+    printf("\n");
+}
+
+void test_expand(huge *h) {
+	printf("\n## TEST-EXPAND ##\n");
+	
+	int i;
+	for (int i=0; i<8; i++) {
+		print_huge(h);
+		left_shift(h);
+	}
+}
+
 int main(int argc, const char * argv[])
 {
-    int i;
     huge *h1 = malloc(sizeof(huge));
     huge *h2 = malloc(sizeof(huge));
     
-    set_huge(h1, 1032); // 0000 0100 0000 1000
-    set_huge(h2, 1033); // 0000 0100 0000 1001
+    set_huge(h1, 1032); // 00000100 00001000
+    set_huge(h2, 1033); // 00000100 00001001
     
-    printf("h1->size: %d\n", h1->size);
+    print_huge(h1);
+    print_huge(h2);
     
-    for (i=0; i<h1->size; i++) {
-        printf("%d ", h1->rep[i]);
-    }
-    
-    printf("\n");
     printf("cmp h1 h2: %d\n", compare(h1, h2));
     printf("cmp h1 h1: %d\n", compare(h1, h1));
     printf("cmp h1 h1: %d\n", compare(h2, h1));
     
+    test_shift_logic();
+    
+    expand(h2);
+    print_huge(h2);
+    
+    test_expand(h1);      
     return 0;
 }
 
