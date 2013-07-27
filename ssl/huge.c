@@ -15,6 +15,33 @@ const char* byte_to_binary(int x) {
   return b;
 }
 
+const int binary_to_byte(char* x) {
+	int ret;
+	int cnt = 0;
+	char *p;
+	int b[8];
+	
+	for (p = x; ((*p != '\0') && (cnt < 8)); p++) {		
+		if (*p == '1') {
+			printf("1");
+			b[cnt] = 1;
+		} else if (*p == '0') {
+			printf("0");
+			b[cnt] = 0;
+		}
+		cnt++;
+	}
+	
+	int size = cnt;
+	while (cnt >= 0) {
+		ret += b[size - cnt] << cnt;
+		cnt--;
+	}
+	
+	printf("\n");
+	return ret;	
+}
+
 typedef struct {
     unsigned int size;
     unsigned char *rep;
@@ -123,13 +150,21 @@ void divide(huge *dividend, huge *divisor, huge *quotient) {
     bit_position = 8 - (bit_size % 8) - 1;
     
     do {
+    	if (compare(divisor, dividend) <= 0) {
+//      		subtract(dividend, divisor);
+    		quotient->rep[(int) (bit_position / 8)] |= (0x80 >> (bit_position % 8));
+    	}
+    	
+		if (bit_size) {
+// 			right_shift(divisor);
+		}
+		bit_position++;    	
         
     } while (bit_size--);
 }
 
 void print_huge(huge *h) {
 	int i;
-//     printf("\nh->size: %d\n", h->size);
     
     for (i=0; i<h->size; i++) {
         printf("%s ", byte_to_binary(h->rep[i]));
@@ -157,6 +192,14 @@ void test_expand(huge *h) {
 	}
 }
 
+void test_binary_to_byte() {
+	char *p = "111100001";
+	char *q = "1010";
+	binary_to_byte(p);
+
+	printf("binary_to_byte(1010): %d\n", binary_to_byte(q));
+}
+
 int main(int argc, const char * argv[])
 {
     huge *h1 = malloc(sizeof(huge));
@@ -172,12 +215,22 @@ int main(int argc, const char * argv[])
     printf("cmp h1 h1: %d\n", compare(h1, h1));
     printf("cmp h1 h1: %d\n", compare(h2, h1));
     
+    while (compare(h1, h2) < 0) {
+        left_shift(h1);
+        printf("left_shift(h1)\n");
+    }
+    
+    print_huge(h1);
+    printf("cmp h1 h2: %d\n", compare(h1, h2));    
+    
     test_shift_logic();
     
     expand(h2);
     print_huge(h2);
     
-    test_expand(h1);      
+    test_expand(h1);
+    
+    test_binary_to_byte();
     return 0;
 }
 
