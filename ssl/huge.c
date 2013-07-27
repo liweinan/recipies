@@ -33,11 +33,11 @@ const int binary_to_byte(char* x) {
 	}
 	
 	int size = cnt;
-	while (cnt >= 0) {
-		ret += b[size - cnt] << cnt;
+	while (cnt > 0) {
+		ret += b[size - cnt] << cnt-1;
 		cnt--;
 	}
-	
+		
 	printf("\n");
 	return ret;	
 }
@@ -193,11 +193,12 @@ void test_expand(huge *h) {
 }
 
 void test_binary_to_byte() {
-	char *p = "111100001";
+	char *p = "10101010";
 	char *q = "1010";
-	binary_to_byte(p);
+// 	binary_to_byte(p);
 
-	printf("binary_to_byte(1010): %d\n", binary_to_byte(q));
+	printf("binary_to_byte(1010): %s\n", byte_to_binary(binary_to_byte(q)));
+	printf("binary_to_byte(10101010): %s\n", byte_to_binary(binary_to_byte(p)));
 }
 
 int main(int argc, const char * argv[])
