@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 const char* byte_to_binary(int x) {
   static char b[9];
@@ -16,30 +17,30 @@ const char* byte_to_binary(int x) {
 }
 
 const int binary_to_byte(char* x) {
-	int ret;
-	int cnt = 0;
+	int val=0;
+	int cnt=0;
 	char *p;
 	int b[8];
 	
 	for (p = x; ((*p != '\0') && (cnt < 8)); p++) {		
 		if (*p == '1') {
-			printf("1");
 			b[cnt] = 1;
 		} else if (*p == '0') {
-			printf("0");
 			b[cnt] = 0;
 		}
 		cnt++;
 	}
 	
 	int size = cnt;
-	while (cnt > 0) {
-		ret += b[size - cnt] << cnt-1;
-		cnt--;
+	cnt = 0;
+	while (cnt < (size-1)) {
+		val += b[cnt] << size-cnt-1;
+		cnt++;
 	}
-		
-	printf("\n");
-	return ret;	
+	
+	val += b[size-1];
+
+	return val;	
 }
 
 typedef struct {
@@ -85,6 +86,20 @@ void left_shift(huge *h1) {
 	if (carry) {
 		expand(h1);
 	}
+}
+
+void right_shift(huge *h1) {
+	int i;
+	unsigned int old_carry, carry = 0;
+	
+	i = 0;
+	
+	do {
+		old_carry = carry;
+		carry = (h1->rep[i] & 0x01) << 7;
+		h1->rep[i] = (h1->rep[i] >> 1) | old_carry;		
+	} while (++i < h1->size);
+	contract(h1);
 }
 
 int compare(huge *h1, huge *h2) {
@@ -151,12 +166,12 @@ void divide(huge *dividend, huge *divisor, huge *quotient) {
     
     do {
     	if (compare(divisor, dividend) <= 0) {
-//      		subtract(dividend, divisor);
+//       		subtract(dividend, divisor);
     		quotient->rep[(int) (bit_position / 8)] |= (0x80 >> (bit_position % 8));
     	}
     	
 		if (bit_size) {
-// 			right_shift(divisor);
+ 			right_shift(divisor);
 		}
 		bit_position++;    	
         
@@ -193,12 +208,32 @@ void test_expand(huge *h) {
 }
 
 void test_binary_to_byte() {
-	char *p = "10101010";
-	char *q = "1010";
-// 	binary_to_byte(p);
+	char *p1 = "0";
+	char *p2 = "1";
+	char *p3 = "10";
+	char *p4 = "11";
+	char *p5 = "100";
+	char *p6 = "101";
+	char *p7 = "110";
+	char *p8 = "111";
 
-	printf("binary_to_byte(1010): %s\n", byte_to_binary(binary_to_byte(q)));
-	printf("binary_to_byte(10101010): %s\n", byte_to_binary(binary_to_byte(p)));
+	printf("binary_to_byte(%s): %s\n", p1, byte_to_binary(binary_to_byte(p1)));
+	printf("binary_to_byte(%s): %s\n", p2, byte_to_binary(binary_to_byte(p2)));
+	printf("binary_to_byte(%s): %s\n", p3, byte_to_binary(binary_to_byte(p3)));
+	printf("binary_to_byte(%s): %s\n", p4, byte_to_binary(binary_to_byte(p4)));
+	printf("binary_to_byte(%s): %s\n", p5, byte_to_binary(binary_to_byte(p5)));
+	printf("binary_to_byte(%s): %s\n", p6, byte_to_binary(binary_to_byte(p6)));
+	printf("binary_to_byte(%s): %s\n", p7, byte_to_binary(binary_to_byte(p7)));
+	printf("binary_to_byte(%s): %s\n", p8, byte_to_binary(binary_to_byte(p8)));
+	
+	assert(0 == binary_to_byte(p1));
+	assert(1 == binary_to_byte(p2));
+	assert(2 == binary_to_byte(p3));
+	assert(3 == binary_to_byte(p4));
+	assert(4 == binary_to_byte(p5));
+	assert(5 == binary_to_byte(p6));
+	assert(6 == binary_to_byte(p7));
+	assert(7 == binary_to_byte(p8));
 }
 
 int main(int argc, const char * argv[])
