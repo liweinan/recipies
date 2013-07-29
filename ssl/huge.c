@@ -57,15 +57,16 @@ void expand(huge *h) {
 	free(tmp);
 }
 
-void contract (huge *h) {
+void contract(huge *h) {
     int i = 0;
-    while (!(h->rep[i]) && (i<h->size)) { i++; }
+    while ((h->rep[i] == 0) && (i<h->size)) { i++; }
     
     if (i && i<h->size) {
         unsigned char *tmp = &h->rep[i];
         
         h->rep = (unsigned char*) calloc(h->size-i, sizeof(unsigned char));
         memcpy(h->rep, tmp, h->size-i);
+        h->size = h->size-i;
     }
 }
 
@@ -181,10 +182,14 @@ void add(huge *h1, huge *h2) {
 		expand(h1);
 	}
 }
-
+// Wrap:
+// 250 =         0000 1111 1010
+// 257 =         0001 0000 0001
+// 257 - 250 =   0000 0000 0111 
+// 1 - 250 =     1..1 0000 0111 -> wrap to 0000 0111, which is correct
 void subtract(huge *h1, huge *h2) {
 	int i = h1->size;
-	int j = h2->size;
+	int j = h2->size;		
 	
 	int difference;
 	
@@ -203,13 +208,13 @@ void subtract(huge *h1, huge *h2) {
 		h1->rep[i] = difference;
 	} while (i);
 	
-	if (borrow && i) {
-		if (!(h1->rep[i-1])) {
-			printf("Error, subtraction result is negative\n");
-			exit(0);
-		}
-		h1->rep[i-1]--;
-	}
+	// if (borrow && i) {
+// 		if ((h1->rep[i-1] != 0) {
+// 			printf("Error, subtraction result is negative\n");
+// 			exit(0);
+// 		}
+// 		h1->rep[i-1]--;
+// 	}
 	
 	contract(h1);
 }
@@ -251,6 +256,18 @@ void print_huge(huge *h) {
         printf("%s ", byte_to_binary(h->rep[i]));
     }    
     printf("\n");
+}
+
+char* huge_to_binary(huge *h) {
+	char *binary = calloc(1 + 8 * h->size, sizeof(char));
+
+	int i;
+    
+    for (i=0; i<h->size; i++) {
+        strcat(binary, byte_to_binary(h->rep[i]));
+    }    
+    
+    return binary;
 }
 
 void test_shift_logic() {
@@ -303,6 +320,65 @@ void test_binary_to_byte() {
 }
 
 void test_add() {
+	huge *h1 = malloc(sizeof(huge));
+    huge *h2 = malloc(sizeof(huge));
+    huge *h3 =  malloc(sizeof(huge));
+    set_huge(h1, 1032); // 00000100 00001000
+    set_huge(h2, 1033); // 00000100 00001001
+    set_huge(h3, 1);
+    
+    add(h1, h2);
+    printf("add(h1,h2): ");
+    print_huge(h1);
+    
+    add(h3, h2);
+    printf("add(h3,h2): ");
+    print_huge(h3);
+
+    assert(strcmp("0000100000010001", huge_to_binary(h1)) == 0);
+    assert(strcmp("0000010000001010", huge_to_binary(h3)) == 0);
+
+}
+
+void print_ab(a, b) {
+	printf("a: %s\n", byte_to_binary(a));
+	printf("b: %s\n", byte_to_binary(b));
+	printf("a-b: %s\n", byte_to_binary(a-b));
+	if (a < b) {
+		printf("a-b-1: %s\n", byte_to_binary(a-b-1));
+	}
+	printf("b-a: %s\n", byte_to_binary(b-a));
+	
+}
+
+void test_subtract() {
+	unsigned char a = 15;
+	unsigned char b = 30;
+	print_ab(a, b);
+
+    huge *h1 = malloc(sizeof(huge));
+    huge *h2 = malloc(sizeof(huge));
+    
+    set_huge(h1, 258); // 00000001 00000010
+    set_huge(h2, 250); // 00000000 11111010
+    subtract(h1, h2);
+    assert(strcmp("00001000", huge_to_binary(h1)) == 0);
+	
+}
+
+void test_do_while() {
+	int i = 10;
+	printf("do_while: ");
+
+	do {
+		i--;
+		printf("%d ", i);
+	} while (i);
+	
+	if (i) {
+		printf("\ni: %d", i);
+	}
+	printf("\n");
 }
 
 #ifdef MAIN
@@ -338,6 +414,11 @@ int main(int argc, const char * argv[]) {
     test_binary_to_byte();
     
     test_add();
+    
+    test_subtract();
+    
+    test_do_while();
+    
     return 0;
 }
 #endif
