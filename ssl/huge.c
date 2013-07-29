@@ -148,6 +148,72 @@ void set_huge(huge *h, unsigned int val) {
     }
 }
 
+void add(huge *h1, huge *h2) {
+	unsigned int i, j;
+	unsigned int sum;
+	unsigned int carry = 0;
+	
+	if (h2->size > h1->size) {
+		unsigned char *tmp = h1->rep;
+		h1->rep = (unsigned char*) calloc(h2->size, sizeof(unsigned char));
+		memcpy(h1->rep + (h2->size - h1->size), tmp, h1->size);
+		h1->size = h2->size;
+		free(tmp);
+	}
+
+	i = h1->size;
+	j = h2->size;
+	
+	do {
+		i--;
+		if (j) {
+			j--;
+			sum = h1->rep[i] + h2->rep[j] + carry;
+		} else {
+			sum = h1->rep[i] + carry;
+		}	
+		
+		carry = sum > 0xFF;
+		h1->rep[i] = sum;
+	} while (i);
+	
+	if (carry) {
+		expand(h1);
+	}
+}
+
+void subtract(huge *h1, huge *h2) {
+	int i = h1->size;
+	int j = h2->size;
+	
+	int difference;
+	
+	unsigned int borrow = 0;
+	
+	do {
+		i--;
+		if (j) {
+			j--;
+			difference = h1->rep[i] - h2->rep[j] - borrow;
+		} else {
+			difference = h1->rep[i] - borrow;
+		}
+		
+		borrow = (difference < 0);
+		h1->rep[i] = difference;
+	} while (i);
+	
+	if (borrow && i) {
+		if (!(h1->rep[i-1])) {
+			printf("Error, subtraction result is negative\n");
+			exit(0);
+		}
+		h1->rep[i-1]--;
+	}
+	
+	contract(h1);
+}
+
 void divide(huge *dividend, huge *divisor, huge *quotient) {
     int bit_size, bit_position;
     
@@ -166,7 +232,7 @@ void divide(huge *dividend, huge *divisor, huge *quotient) {
     
     do {
     	if (compare(divisor, dividend) <= 0) {
-//       		subtract(dividend, divisor);
+      		subtract(dividend, divisor);
     		quotient->rep[(int) (bit_position / 8)] |= (0x80 >> (bit_position % 8));
     	}
     	
@@ -236,8 +302,11 @@ void test_binary_to_byte() {
 	assert(7 == binary_to_byte(p8));
 }
 
-int main(int argc, const char * argv[])
-{
+void test_add() {
+}
+
+#ifdef MAIN
+int main(int argc, const char * argv[]) {
     huge *h1 = malloc(sizeof(huge));
     huge *h2 = malloc(sizeof(huge));
     
@@ -267,6 +336,9 @@ int main(int argc, const char * argv[])
     test_expand(h1);
     
     test_binary_to_byte();
+    
+    test_add();
     return 0;
 }
+#endif
 
