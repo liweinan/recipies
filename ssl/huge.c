@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include "huge.h"
 
 const char* byte_to_binary(int x) {
   static char b[9];
@@ -42,11 +43,6 @@ const int binary_to_byte(char* x) {
 
 	return val;	
 }
-
-typedef struct {
-    unsigned int size;
-    unsigned char *rep;
-} huge;
 
 void expand(huge *h) {
 	unsigned char *tmp = h->rep;
@@ -101,6 +97,23 @@ void right_shift(huge *h1) {
 		h1->rep[i] = (h1->rep[i] >> 1) | old_carry;		
 	} while (++i < h1->size);
 	contract(h1);
+}
+
+void copy_huge(huge *tgt, huge *src) {
+	if (tgt->rep) {
+		free(tgt->rep);
+	}
+	
+	tgt->size = src->size;
+	tgt->rep = (unsigned char*) calloc(src->size, sizeof(unsigned char));
+	memcpy(tgt->rep, src->rep, (src->size * sizeof(unsigned char)));
+}
+
+void free_huge(huge *h) {
+	h->size = 0;
+	if (h->rep) {
+		free(h->rep);
+	}
 }
 
 int compare(huge *h1, huge *h2) {
@@ -219,6 +232,29 @@ void subtract(huge *h1, huge *h2) {
 	contract(h1);
 }
 
+void multiply(huge *h1, huge *h2) {
+	unsigned char mask;
+	unsigned int i;
+	huge temp;
+	
+	set_huge(&temp, 0);
+	copy_huge(&temp, h1);
+	
+	set_huge(h1, 0);
+	
+	i = h2->size;
+	
+	do {
+		i--;
+		for (mask = 0x01; mask; mask <<= 1) {
+			if (mask & h2->rep[i]) {
+				add(h1, &temp);
+			}
+			left_shift(&temp);
+		}
+	} while (i);
+}
+
 void divide(huge *dividend, huge *divisor, huge *quotient) {
     int bit_size, bit_position;
     
@@ -229,16 +265,20 @@ void divide(huge *dividend, huge *divisor, huge *quotient) {
         bit_size++;
     }
     
-    quotient->size = (bit_size / 8) + 1;
-    quotient->rep = (unsigned char *) calloc(quotient->size, sizeof(unsigned char));
-    memset(quotient->rep, 0, quotient->size);
+    if (quotient) {
+	    quotient->size = (bit_size / 8) + 1;
+	    quotient->rep = (unsigned char *) calloc(quotient->size, sizeof(unsigned char));
+    	memset(quotient->rep, 0, quotient->size);
+    }
     
     bit_position = 8 - (bit_size % 8) - 1;
     
     do {
     	if (compare(divisor, dividend) <= 0) {
       		subtract(dividend, divisor);
-    		quotient->rep[(int) (bit_position / 8)] |= (0x80 >> (bit_position % 8));
+      		if (quotient) {
+	    		quotient->rep[(int) (bit_position / 8)] |= (0x80 >> (bit_position % 8));
+	    	}
     	}
     	
 		if (bit_size) {
@@ -381,7 +421,49 @@ void test_do_while() {
 	printf("\n");
 }
 
-#ifdef MAIN
+void test_compare() {
+
+    huge *h1 = malloc(sizeof(huge));
+    huge *h2 = malloc(sizeof(huge));
+    
+    set_huge(h1, 3); // 000000011
+    set_huge(h2, 4); // 000000100
+
+	assert(compare(h1, h2) < 0);
+	while (compare(h1, h2) < 0) {
+		left_shift(h1);
+	}
+	
+	assert(compare(h1, h2) > 0);
+}
+
+void test_multiply() {
+	huge *h1 = malloc(sizeof(huge));
+    huge *h2 = malloc(sizeof(huge));
+    
+    set_huge(h1, 3); // 000000011
+    set_huge(h2, 4); // 000000100
+
+	multiply(h1, h2);
+	assert(strcmp("00001100",huge_to_binary(h1)) == 0);
+}
+
+void test_divide() {
+	huge *h1 = malloc(sizeof(huge));
+    huge *h2 = malloc(sizeof(huge));
+    huge *quotient = malloc(sizeof(huge));
+    
+    set_huge(h1, 15); // 00001111
+    set_huge(h2, 3); //  00000011
+    set_huge(quotient, 0);
+
+	divide(h1, h2, quotient);
+	assert(strcmp("00000101",huge_to_binary(quotient)) == 0); // 15 / 3 = 5
+	assert(strcmp("00000000",huge_to_binary(h1)) == 0); // reminder is zero
+	assert(strcmp("00000011",huge_to_binary(h2)) == 0); // unchanged
+}
+
+#ifdef HUGE_MAIN
 int main(int argc, const char * argv[]) {
     huge *h1 = malloc(sizeof(huge));
     huge *h2 = malloc(sizeof(huge));
@@ -418,6 +500,12 @@ int main(int argc, const char * argv[]) {
     test_subtract();
     
     test_do_while();
+    
+    test_compare();
+    
+    test_multiply();
+    
+    test_divide();
     
     return 0;
 }
