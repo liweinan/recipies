@@ -310,6 +310,34 @@ char* huge_to_binary(huge *h) {
     return binary;
 }
 
+void exponentiate(huge *h, huge *exp) {
+	int i = exp->size, mask;
+	huge t1, t2;
+	
+	set_huge(&t1, 0);
+	set_huge(&t2, 0);
+	
+	copy_huge(&t1, h);
+	set_huge(h, 1);
+	
+	do {
+		i--;
+		for (mask=0x01; mask <=128; mask <<= 1) {
+			if (exp->rep[i] & mask) {
+				multiply(h, &t1);
+			}
+			
+			copy_huge(&t2, &t1);
+			multiply(&t1, &t2);
+		}
+	} while (i);
+	
+	free_huge(&t1);
+	free_huge(&t2);
+}
+
+#ifdef HUGE_MAIN
+
 void test_shift_logic() {
 	//j 1|0 2|0 4|0 8|0 10|0 20|0 40|0 80|128
     printf("\nj ");
@@ -463,7 +491,17 @@ void test_divide() {
 	assert(strcmp("00000011",huge_to_binary(h2)) == 0); // unchanged
 }
 
-#ifdef HUGE_MAIN
+void test_exponentiate() {
+	huge h;
+	huge exp;
+	set_huge(&h, 2);
+	set_huge(&exp, 3);
+	
+	exponentiate(&h, &exp);
+	
+	assert(strcmp("00001000",huge_to_binary(&h)) == 0);
+}
+
 int main(int argc, const char * argv[]) {
     huge *h1 = malloc(sizeof(huge));
     huge *h2 = malloc(sizeof(huge));
@@ -506,6 +544,8 @@ int main(int argc, const char * argv[]) {
     test_multiply();
     
     test_divide();
+    
+    test_exponentiate();
     
     return 0;
 }
