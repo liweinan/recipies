@@ -13,6 +13,7 @@ void add(huge *h1, huge *h2);
 void divide(huge *dividend, huge *divisor, huge *quotient);
 void multiply(huge *h1, huge *h2);
 void subtract(huge *h1, huge *h2);
+void mod_pow(huge *m, huge *exp, huge *n, huge *c);
 void set_huge(huge *h, unsigned int val);
 void copy_huge(huge *tgt, huge *src);
 void free_huge(huge *h);

@@ -336,6 +336,35 @@ void exponentiate(huge *h, huge *exp) {
 	free_huge(&t2);
 }
 
+// c = m ^ e % n
+void mod_pow(huge *m, huge *exp, huge *n, huge *c) {
+	int i = exp->size;
+	unsigned char mask;
+	huge t1, t2;
+	
+	set_huge(&t1, 0);
+	set_huge(&t2, 0);
+	
+	copy_huge(&t1, m);
+	set_huge(c, 1);
+	
+	do {
+		i--;
+		for (mask=0x01; mask <=128; mask <<= 1) {
+			if (exp->rep[i] & mask) {
+				multiply(c, &t1);
+				divide(c, n, NULL);
+			}
+			
+			copy_huge(&t2, &t1);
+			multiply(&t1, &t2);
+		}
+	} while (i);
+	
+	free_huge(&t1);
+	free_huge(&t2);
+}
+
 #ifdef HUGE_MAIN
 
 void test_shift_logic() {

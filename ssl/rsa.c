@@ -4,7 +4,8 @@
 #include <string.h>
 #include <assert.h>
 
-// c = m^e % n
+// c = m ^ e % n
+// this is replaced by mod_pow() in huge.c
 void rsa_compute(huge *m, huge *e, huge *n, huge *c) {
 	huge counter;
 	huge one;
