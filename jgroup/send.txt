@@ -1,0 +1,25 @@
+udp:UDP (TP)[a]
+ping:PING (Discovery)[a]
+merge:MERGE2[a]
+fdsock:FD_SOCK[a]
+fdall:FD_ALL[a]
+verify:VERIFY_SUSPECT[a]
+barrier:BARRIER[a]
+nakack:NAKACK2[a]
+unicast:UNICAST3[a]
+stable:STABLE[a]
+gms:GMS[a]
+ufc:UFC (FlowControl)[a]
+mfc:MFC (FlowControl)[a]
+frag:FRAG2[a]
+rsvp:RSVP[a]
+transfer:STATE_TRANSFER[a]
+stack:ProtocolStack[a]
+jchannel:JChannel[a]
+
+
+
+
+
+
+

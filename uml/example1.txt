@@ -1,0 +1,17 @@
+admin:Administrator
+cms:ContentManagementSystem[a]
+acd:AuthorCredentialsDB
+es:EmailSystem
+
+admin:cms.createNewBlogAccount
+
+admin:cms.selectBlogAccountType(type)
+
+admin:cms.enterAuthorDetails(author:AuthorDetails)
+
+cms:acd.checkAuthorDetails(author:AuthorDetails)
+
+cms:cms.createNewRegularBlogAccount(author:AuthorDetails)
+
+cms[1]:cms.emailBlogDetails(regularBlogAccount)
+cms:es.sendEmail(email:Email)
