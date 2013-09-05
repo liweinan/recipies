@@ -44,3 +44,15 @@ check_shared_lib: shared_lib
 soname: mod1.c mod2.c mod3.c
 	gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
 	gcc -g -shared -Wl,-soname,libbar.so -o libfoo.so mod1.o mod2.o mod3.o
+
+read_soname: soname
+	objdump -p libfoo.so | grep SONAME
+	readelf -d libfoo.so | grep SONAME
+
+prog_soname: soname prog.c
+	gcc -g -Wall -o prog_soname prog.c libfoo.so
+
+run_prog_soname: prog_soname
+	-@rm -rf libbar.so
+	ln -s libfoo.so libbar.so
+	LD_LIBRARY_PATH=. ./prog_soname
