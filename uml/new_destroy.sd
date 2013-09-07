@@ -21,20 +21,20 @@ gg:ee.abcd
 bb:bs.start
 
 
-
 *1 bs
 a
 b
 c
 *1
 
-*2 bs
-d
-e
-f
-*2
+[c:alt]
+  aa:bb.switch()
+-- seperator
+  aa:cc.switch2()
+[/c]
 
-(1,2)bs:start=gg.abcd
+
+
 
 
 
