@@ -56,3 +56,19 @@ run_prog_soname: prog_soname
 	-@rm -rf libbar.so
 	ln -s libfoo.so libbar.so
 	LD_LIBRARY_PATH=. ./prog_soname
+
+show_ldd: prog_soname
+	LD_LIBRARY_PATH=. ldd prog_soname
+
+linker_name:
+	@rm -rf *.so *.so.* *.so.*.* *.so.*.*.*
+	@rm -rf *.o
+	gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
+	gcc -g -shared -Wl,-soname,libdemo.so.1 -o libdemo.so.1.0.1 \
+		mod1.o mod2.o mod3.o
+	ln -s libdemo.so.1.0.1 libdemo.so.1
+	ln -s libdemo.so.1 libdemo.so
+
+use_linker_name: linker_name
+	gcc -g -Wall -o prog_linker_name prog.c -L. -ldemo
+	LD_LIBRARY_PATH=. ./prog_linker_name
