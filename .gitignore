@@ -6,3 +6,5 @@ tmp
 lex.yy.c
 \#*.*\#
 a.out
+*.class
+*.dSYM
