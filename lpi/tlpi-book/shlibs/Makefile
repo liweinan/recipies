@@ -69,6 +69,23 @@ linker_name:
 	ln -s libdemo.so.1.0.1 libdemo.so.1
 	ln -s libdemo.so.1 libdemo.so
 
+linker_name2: linker_name
+	gcc -g -shared -Wl,-soname,libdemo.so.1 -o libdemo.so.1.0.2 \
+		mod1.o mod2.o mod3.o
+
+
+play_with_ldconfig: linker_name2
+	@sudo rm -f /usr/lib/libdemo.so.1.0.1
+	sudo mv libdemo.so.1.0.1 /usr/lib
+	sudo ldconfig -v | grep libdemo
+	@sudo rm -f /usr/lib/libdemo.so
+	cd /usr/lib;sudo ln -s libdemo.so.1 libdemo.so;cd -
+	ls -la /usr/lib/libdemo*
+	@sudo rm -f /usr/lib/libdemo.so.1.0.2
+	sudo mv libdemo.so.1.0.2 /usr/lib
+	sudo ldconfig -v | grep libdemo
+	ls -la /usr/lib/libdemo*
+
 use_linker_name: linker_name
 	gcc -g -Wall -o prog_linker_name prog.c -L. -ldemo
 	LD_LIBRARY_PATH=. ./prog_linker_name
