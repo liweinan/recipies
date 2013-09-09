@@ -4,7 +4,6 @@ clean:
 		sslbook/ch02/des rm sslbook/ch02/rc4 \
 		asm/hello \
 		c/endian \
-		lisp/ \
 		ssl/huge ssl/rsa
 
 .PHONY: clean

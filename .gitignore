@@ -10,3 +10,4 @@ a.out
 *.dSYM
 *.lst
 *.s
+*.*~
