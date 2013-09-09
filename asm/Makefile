@@ -12,9 +12,11 @@ shift_bits: shift_bits.o
 shift_bits.o: shift_bits.asm
 	nasm -f elf -g -F stabs shift_bits.asm -l shift_bits.lst
 hello: hello.o
-	gcc -o hello hello.o
+	#gcc -o hello hello.o
+	ld -e main -o hello hello.o 
 hello.o: hello.asm
-	nasm -f elf -l hello.lst  hello.asm
+	#nasm -f elf -l hello.lst  hello.asm
+	nasm -f macho -g hello.asm
 xlat: xlat.o
 	ld -o xlat xlat.o
 xlat.o: xlat.asm

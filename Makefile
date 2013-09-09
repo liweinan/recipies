@@ -1,8 +1,10 @@
 clean:
-	rm scala/cd
-	rm ssl/huge
-	rm sslbook/ch02/aes
-	rm sslbook/ch02/des
-	rm sslbook/ch02/rc4
+	rm -rf scala/cd \
+		ssl/huge sslbook/ch02/aes \
+		sslbook/ch02/des rm sslbook/ch02/rc4 \
+		asm/hello \
+		c/endian \
+		lisp/ \
+		ssl/huge ssl/rsa
 
 .PHONY: clean

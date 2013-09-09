@@ -1,3 +1,16 @@
+# MacOS hacked version
+
+Migrate these asm programs to MacOS. 
+
+## References
+
+[1] http://www.amazon.com/Assembly-Language-Step-Step-Programming/dp/0470497025 
+[2] http://www.duntemann.com/assembly.html 
+[3] http://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/ 
+[4] http://salahuddin66.blogspot.com/2009/08/nasm-in-mac-os-x.html 
+[5] http://www.freebsd.org/doc/en/books/developers-handbook/x86-system-calls.html
+
+
 # learn-assembly
 
 ## Introduction
