@@ -30,3 +30,17 @@ prog: static_lib
 static_lib: basic
 	ar r libdemo.a mod1.o mod2.o mod3.o
 	ar t libdemo.a
+
+shared_lib: mod1.c mod2.c mod3.c
+	rm -f mod1.o mod2.o mod3.o
+	gcc -g -c -fPIC mod1.c mod2.c mod3.c
+	gcc -g -shared -o libfoo.so mod1.o mod2.o mod3.o
+
+check_shared_lib: shared_lib
+# - means ignore the bad exit value
+	-nm mod1.o | grep _GLOBAL_OFFSET_TABLE_
+	-readelf -s mod1.o | grep _GLOBAL_OFFSET_TABLE_
+
+soname: mod1.c mod2.c mod3.c
+	gcc -g -c -fPIC -Wall mod1.c mod2.c mod3.c
+	gcc -g -shared -Wl,-soname,libbar.so -o libfoo.so mod1.o mod2.o mod3.o
