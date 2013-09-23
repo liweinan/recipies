@@ -69,13 +69,13 @@ linker_name:
 	ln -s libdemo.so.1.0.1 libdemo.so.1
 	ln -s libdemo.so.1 libdemo.so
 
-linker_name2: linker_name
+linker_name2:linker_name
 	gcc -g -shared -Wl,-soname,libdemo.so.1 -o libdemo.so.1.0.2 \
 		mod1.o mod2.o mod3.o
 
 
 play_with_ldconfig: linker_name2
-	@sudo rm -f /usr/lib/libdemo.so.1.0.1
+	@sudo rm -f /usr/lib/libdemo*
 	sudo mv libdemo.so.1.0.1 /usr/lib
 	sudo ldconfig -v | grep libdemo
 	@sudo rm -f /usr/lib/libdemo.so
