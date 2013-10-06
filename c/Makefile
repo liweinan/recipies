@@ -44,11 +44,17 @@ hostname.o: hostname.c
 gethostbyaddr: gethostbyaddr.c
 	cc $< -o $@
 
+enum: enum.c
+	cc $< -o $@
+
 perror: perror.c
 	cc $< -o $@
 
 endian: endian.c lib/common.c
 	cc endian.c lib/common.c -o $@
+
+ptr: ptr.c
+	cc ptr.c -o ptr
 
 clean:
 	rm *.o

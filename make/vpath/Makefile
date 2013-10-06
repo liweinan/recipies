@@ -1,9 +1,10 @@
 vpath %.c src
 vpath %.h include
+CPPFLAGS = -I include
 
 main: hello.c main.c hello.h
-	gcc -I include $^ -o $@
+	gcc $(CPPFLAGS) $^ -o $@
 
 .PHONY: clean
 clean:
-	rm -rf main
+	@rm -rf main

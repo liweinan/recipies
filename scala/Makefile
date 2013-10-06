@@ -19,6 +19,21 @@ compile-longline: FindLongLines.scala
 summer: compile-summer
 	scala -classpath . Summer is coming
 
+greet: compile-greet
+	scala -classpath . Greet
+
+compile-greet:
+	fsc greet.scala
+
+apptraits: compile-apptraits
+	scala -classpath . AppTraits
+
+compile-apptraits:
+	fsc apptraits.scala
+
+traits: traits.scala
+	scala traits.scala
+
 clean:
 	rm *.class
 

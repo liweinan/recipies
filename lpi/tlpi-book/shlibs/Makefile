@@ -69,7 +69,7 @@ linker_name:
 	ln -s libdemo.so.1.0.1 libdemo.so.1
 	ln -s libdemo.so.1 libdemo.so
 
-linker_name2: linker_name
+linker_name2:linker_name
 	gcc -g -shared -Wl,-soname,libdemo.so.1 -o libdemo.so.1.0.2 \
 		mod1.o mod2.o mod3.o
 
