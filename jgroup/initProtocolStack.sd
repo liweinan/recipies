@@ -1,0 +1,35 @@
+udp:TP (UDP) [a]
+ping:Discovery (PING) [a]
+merge2:MERGE2 [a]
+fd_sock:FD_SOCK [a]
+fd_all:FD_ALL [a]
+verify:VERIFY_SUSPECT [a]
+barrier:BARRIER [a]
+nakack2:NAKACK2 [a]
+unicast3:UNICAST3 [a]
+stable:STABLE [a]
+gms:GMS [a]
+ufc:FlowControl (UFC) [a]
+mfc:FlowControl (MFC) [a]
+
+udp:udp.up(new Event(Event.CONFIG, m));
+udp:return=ping.up_prot.up(evt);
+ping:return=merge2.up_prot.up(evt);
+merge2:return=fd_sock.up_prot.up(evt);
+fd_sock:return=fd_all.up_prot.up(evt);
+fd_all:return=verify.up_prot.up(evt);
+verify:return=barrier.up_prot.up(evt);
+barrier:return=nakack2.up_prot.up(evt);
+nakack2:return=unicast3.up_prot.up(evt);
+unicast3:return=stable.up_prot.up(evt);
+stable:return=gms.up_prot.up(evt);
+
+gms:gms.handleConfigEvent(map);
+gms:return=ufc.up_prot.up(evt);
+
+
+
+
+
+
+

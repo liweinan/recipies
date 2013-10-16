@@ -1,0 +1,15 @@
+#![abc Diagram]
+#!>>
+#! This is a diagram
+#!
+#!<<
+
+user:Actor
+/a:A
+b:b
+c:c
+
+user:a.new
+
+
+

@@ -1,0 +1,16 @@
+#![new JChannel() - JChannel Initialization Process]
+
+jchannel:JChannel [a]
+configFactory:ConfiguratorFactory [a]
+protStackConfigurator:ProtocolStackConfigurator [a]
+protStack:ProtocolStack [a]
+
+
+jchannel:jchannel.this(DEFAULT_PROTOCOL_STACK);
+jchannel:return configurator \: ProtocolStackConfigurator=configFactory.ConfiguratorFactory.getStackConfigurator(...);
+jchannel:jchannel.init(configurator);
+jchannel:return configs \: List<ProtocolConfiguration>=protStackConfigurator.configurator.getProtocolStack();
+
+jchannel:protStack.prot_stack.setup(configs);
+
+

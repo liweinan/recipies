@@ -1,0 +1,4 @@
+#!/bin/bash
+rm jboss.keystore
+keytool -genkey -keystore jboss.keystore -storepass password -keypass password \
+-keyalg RSA -validity 180 -alias as7 -dname "cn=mini, o=Personal, c=CN"

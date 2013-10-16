@@ -47,6 +47,13 @@ gethostbyaddr: gethostbyaddr.c
 enum: enum.c
 	cc $< -o $@
 
+perror: perror.c
+	cc $< -o $@
+
+endian: endian.c lib/common.c
+	cc endian.c lib/common.c -o $@
+
+
 clean:
 	rm *.o
 	rm *.tmp

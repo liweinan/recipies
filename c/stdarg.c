@@ -40,7 +40,7 @@ double average(int arg_number, ...) {
 	va_list args; 
 	double sum = 0;
 	int x;
-	/* Initializing arguments to store all values after num */
+	/* Initializing arguments to store all values after arg_number */
 	va_start (args, arg_number);
 	/* Sum all the inputs; we still rely on the function caller to tell us how
 	 * many there are */

@@ -4,4 +4,10 @@ tmp
 *.exe
 *~
 lex.yy.c
-
+\#*.*\#
+a.out
+*.class
+*.dSYM
+*.lst
+*.s
+*.*~
