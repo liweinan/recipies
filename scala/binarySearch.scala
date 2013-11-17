@@ -12,7 +12,6 @@ def binarySearch(key : Int, a : List[Int]) : (Int, Int) = {
 }
 
 // no var
-// more memory consumption
 def binarySearchRecursive(key : Int, a : List[Int], lo : Int, hi : Int) : (Int, Int) = {
   if (lo <= hi) {
     val mid = lo + (hi - lo) / 2
