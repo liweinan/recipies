@@ -2,7 +2,7 @@ default: xlat xlat2 sandbox push_esp shift_bits hello inline_data macro_label st
 sandbox: sandbox.o
 	ld -o sandbox sandbox.o
 sandbox.o: sandbox.asm
-	nasm -f elf -g -F stabs sandbox.asm -l sandbox.lst
+	nasm -f elf64 -g -F stabs sandbox.asm -l sandbox.lst
 push_esp: push_esp.o
 	ld -o push_esp push_esp.o
 push_esp.o: push_esp.asm
@@ -12,11 +12,9 @@ shift_bits: shift_bits.o
 shift_bits.o: shift_bits.asm
 	nasm -f elf -g -F stabs shift_bits.asm -l shift_bits.lst
 hello: hello.o
-	#gcc -o hello hello.o
 	ld -e main -o hello hello.o 
 hello.o: hello.asm
-	#nasm -f elf -l hello.lst  hello.asm
-	nasm -f macho -g hello.asm
+	nasm -f elf64 -g -F stabs -g hello.asm -l hello.lst
 xlat: xlat.o
 	ld -o xlat xlat.o
 xlat.o: xlat.asm
@@ -65,3 +63,9 @@ puts: puts.o
 	gcc puts.o -o puts
 puts.o: puts.asm
 	nasm -f elf -g -F stabs puts.asm
+cpuid: cpuid.o
+	ld -o cpuid cpuid.o
+cpuid.o: cpuid.asm
+	nasm -f elf64 -g -F stabs -l cpuid.lst cpuid.asm
+banana: banana.c
+	cc banana.c -o banana
