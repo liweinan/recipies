@@ -1,19 +1,22 @@
-	;; Sample program to extract the processor Vendor ID
-	section .data
-Output db "The processor Vendor ID is 'xxxxxxxxxxxx'",10
-	section .text
-	global _start
+.section .data
+output:
+	.ascii "The processor Vendor ID is 'xxxxyyyyzzzz'\n"
+.section .text
+.globl _start
 _start:
-	nop
-	mov eax, 0
-	cpuid 			; call cpuid
-	movl edi, Output	; collect info into Output
-	
-	;; exit
-	nop
-	mov eax, 1 		; exit
-	mov ebx, 0		; return 0
-	int 80h
-	
+	movl $0, %eax
+	cpuid
+	movl $output, %edi
+#	movl %ebx, 28(%edi)
+	movl %edx, 32(%edi)
+#	movl %ecx, 36(%edi)
+	movl $4, %eax # system call val
+	movl $1, %ebx # file descriptor
+	movl $output, %ecx # start of string
+	movl $42, %edx # length of the string
+	int $0x80
+	movl $1, %eax
+	movl $0, %ebx
+	int $0x80	
 	
 	

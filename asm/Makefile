@@ -63,9 +63,8 @@ puts: puts.o
 	gcc puts.o -o puts
 puts.o: puts.asm
 	nasm -f elf -g -F stabs puts.asm
-cpuid: cpuid.o
+cpuid: cpuid.asm
+	as -o cpuid.o cpuid.asm
 	ld -o cpuid cpuid.o
-cpuid.o: cpuid.asm
-	nasm -f elf64 -g -F stabs -l cpuid.lst cpuid.asm
 banana: banana.c
 	cc banana.c -o banana
