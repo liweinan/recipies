@@ -20,3 +20,14 @@
 (defun dot-name (exp)
 	(substitute-if #\_ (complement #'alphanumericp)
 	(prin1-to-string exp)))
+
+(defun game-repl ()
+	(let ((cmd (game-read)))
+	(unless (eq (car cmd) 'quit)
+		(print (eval cmd))
+		(repl))))
+
+(defun game-read ()
+	(let ((cmd (read-from-string (concatenate 'string "(" (read-line) ")"))))
+		(flet ((quote-it (x) (list 'quote x)))
+		(cons (car cmd) (mapcar #'quote-it (cdr cmd))))))
