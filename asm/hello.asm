@@ -12,26 +12,16 @@ len:	equ $-msg		; "$" means "here"
 
 	SECTION .text		; code section
         global main		; make label available to linker 
-_syscall:
-	int 0x80
-	ret
 main:				; standard  gcc  entry point
 	
-	;mov	edx,len		; arg3, length of string to print
-	push dword len
-	;mov	ecx,msg		; arg2, pointer to string
-	push dword msg
-	;mov	ebx,1		; arg1, where to write, screen
-	push dword 1
+	mov	edx,len		; arg3, length of string to print
+	mov	ecx,msg		; arg2, pointer to string
+	mov	ebx,1		; arg1, where to write, screen
 	mov	eax,4		; write command to int 80 hex
-	;int	0x80		; interrupt 80 hex, call kernel
-	call _syscall
+	int	0x80		; interrupt 80 hex, call kernel
 	
-	;mov	ebx,0		; exit code, 0=normal
-	;mov	eax,1		; exit command to kernel
-	;int	0x80		; interrupt 80 hex, call kernel
-	add esp, 12  ; Clean stack (3 arguments * 4)
-	push dword 0
-	mov eax, 0x1
-	call _syscall
+	mov	ebx,0		; exit code, 0=normal
+	mov	eax,1		; exit command to kernel
+	int	0x80		; interrupt 80 hex, call kernel
+
 
