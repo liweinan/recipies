@@ -56,6 +56,12 @@ endian: endian.c lib/common.c
 ptr: ptr.c
 	cc ptr.c -o ptr
 
+const_game: const_game.c
+	cc const_game.c -o const_game
+
+decl: decl.c
+	cc decl.c -o decl
+
 clean:
 	rm *.o
 	rm *.tmp
