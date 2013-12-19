@@ -1,3 +1,3 @@
-vis_1() {
+void vis_1() {
   vis_comm();
 }
