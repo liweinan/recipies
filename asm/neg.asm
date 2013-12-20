@@ -5,12 +5,9 @@ section .data
 section .text
 global main 
 main:
-	mov eax, 4 ; sys_write
-	mov ebx, 1 ; fd
-	mov ecx, hello
-	mov edx, len
-	int 80h
-	
+	mov eax, 2
+	neg eax	
+
 	mov eax, 1 ; sys_exit
 	mov ebx, 0 ; ret 0
 	int 80h
