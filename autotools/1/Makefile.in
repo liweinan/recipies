@@ -1,0 +1,7 @@
+Makefile: Makefile.in config.status
+	./config.status $@
+
+# A rule to rebuild config.status when configure changes
+config.status: configure
+	./config.status --recheck
+
