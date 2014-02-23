@@ -1,0 +1,7 @@
+exception ABCException {};
+
+module helloapp {
+  interface ABC {
+    void abc() raises (ABCException);
+  };
+};

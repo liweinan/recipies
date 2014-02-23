@@ -25,11 +25,11 @@ public class UseStockServer {
         StockServer serverRef = StockServerHelper.narrow(ref);
 
         org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-        NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+        NamingContextExt nameContextExt = NamingContextExtHelper.narrow(objRef);
 
         String name = "StockServer";
-        NameComponent path[] = ncRef.to_name(name);
-        ncRef.rebind(path, serverRef);
+        NameComponent path[] = nameContextExt.to_name(name);
+        nameContextExt.rebind(path, serverRef);
 
         System.out.println("StockServer ready and waiting...");
         orb.run();

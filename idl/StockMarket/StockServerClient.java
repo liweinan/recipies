@@ -10,6 +10,10 @@ import org.omg.CosNaming.NamingContextExtHelper;
 public class StockServerClient {
     static StockServer server;
     public static void main(String args[]) throws Exception {
+        for (String arg : args) {
+            System.out.print(arg + ":");
+        }
+
         ORB orb = ORB.init(args, null);
 
         // get the root naming context
