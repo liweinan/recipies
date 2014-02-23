@@ -7,6 +7,19 @@
     <file path="/HelloClient.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393071516297" ignored="false" />
     <file path="/HelloImpl.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393054574331" ignored="false" />
     <file path="/HelloServer.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393055345069" ignored="false" />
+    <file path="/ABC.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393173519564" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ABC.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393173528722" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/.idea/misc.xml" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393173522658" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393175181068" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ABC_Stub.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174020043" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemo.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174554609" ignored="false" />
+    <file path="/RMIDemo.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174551698" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemoImpl.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174728427" ignored="false" />
+    <file path="/RMIDemoImpl.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174722369" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemoServer.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174828730" ignored="false" />
+    <file path="/RMIDemoServer.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393174820149" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemoClient.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393175179856" ignored="false" />
+    <file path="/RMIDemoClient.java" changelist="ea2a6c5e-af77-41b3-9d6f-780587dd2750" time="1393175100934" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -871,7 +884,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2515" height="1418" extended-state="0" />
+    <frame x="0" y="22" width="2515" height="1418" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />

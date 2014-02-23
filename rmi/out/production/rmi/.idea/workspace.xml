@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="043b3388-eccc-4e1f-b852-b52db17e9044" name="Default" comment="" />
-    <ignored path="StockMarket.iws" />
+    <list default="true" id="fdb77172-c893-4092-9f36-5071679d2d79" name="Default" comment="" />
+    <ignored path="rmi.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/StockServerPOAImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1392749210648" ignored="false" />
-    <file path="/UseStockServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1392749741632" ignored="false" />
-    <file path="/StockServerClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1392814653532" ignored="false" />
-    <file path="$PROJECT_DIR$/../hello/helloapp/HelloClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393071516297" ignored="false" />
-    <file path="/HelloClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393071516297" ignored="false" />
-    <file path="$PROJECT_DIR$/../hello/helloapp/HelloImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393054575668" ignored="false" />
-    <file path="$PROJECT_DIR$/../hello/helloapp/HelloServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393055346351" ignored="false" />
-    <file path="/HelloImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393054574331" ignored="false" />
-    <file path="/HelloServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393055345070" ignored="false" />
-    <file path="/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173519564" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173528722" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/.idea/misc.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173522657" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175181068" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/ABC_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174020043" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174554609" ignored="false" />
-    <file path="/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174551697" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/RMIDemoImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174728427" ignored="false" />
-    <file path="/RMIDemoImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174722369" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/RMIDemoServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174828730" ignored="false" />
-    <file path="/RMIDemoServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174820149" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175179856" ignored="false" />
-    <file path="/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175100934" ignored="false" />
+    <file path="/ABC.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393173519564" ignored="false" />
+    <file path="/RMIDemo.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174551698" ignored="false" />
+    <file path="/RMIDemoImpl.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174722369" ignored="false" />
+    <file path="/RMIDemoServer.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174820149" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,23 +23,6 @@
   </component>
   <component name="DebuggerManager">
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/StockServerClient.java" line="20" class="StockMarket.StockServerClient" package="StockMarket">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -99,86 +64,72 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="StockMarket" />
+    <favorites_list name="rmi" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StockServer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StockServer.java">
+      <file leaf-file-name="ABC.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ABC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="46" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
+            <state line="2" column="32" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_StockServerStub.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_StockServerStub.java">
+      <file leaf-file-name="Remote.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/rmi/Remote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
+            <state line="49" column="17" selection-start="1310" selection-end="1310" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StockServerClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StockServerClient.java">
+      <file leaf-file-name="ABC_Stub.jad" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ABC_Stub.jad">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="14" selection-start="890" selection-end="896" vertical-scroll-proportion="0.0">
+            <state line="19" column="53" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UseStockServer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UseStockServer.java">
+      <file leaf-file-name="ABC_Stub.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ABC_Stub.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="37" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
+            <state line="3" column="19" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StockSymbolHelper.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/StockSymbolHelper.java">
+      <file leaf-file-name="RMIDemo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RMIDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="16" selection-start="505" selection-end="515" vertical-scroll-proportion="0.28515008">
-              <folding />
+            <state line="7" column="68" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ORB.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/CORBA/ORB.java">
+      <file leaf-file-name="RMIDemoImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RMIDemoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="509" column="41" selection-start="20203" selection-end="20203" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="6" column="73" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NamingContextImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/com/sun/corba/se/impl/naming/cosnaming/NamingContextImpl.java">
+      <file leaf-file-name="RMIDemoServer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RMIDemoServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="656" column="44" selection-start="29410" selection-end="29422" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NamingContextOperations.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/CosNaming/NamingContextOperations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="22" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NamingContextImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/com/sun/corba/se/impl/naming/pcosnaming/NamingContextImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="880" column="55" selection-start="37323" selection-end="37335" vertical-scroll-proportion="0.0">
+            <state line="8" column="15" selection-start="235" selection-end="288" vertical-scroll-proportion="0.12179487">
               <folding />
             </state>
           </provider>
@@ -194,16 +145,19 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/StockServerPOAImpl.java" />
-        <option value="$PROJECT_DIR$/StockServerClient.java" />
-        <option value="$PROJECT_DIR$/UseStockServer.java" />
+        <option value="$PROJECT_DIR$/ABC.java" />
+        <option value="$PROJECT_DIR$/ABC_Stub.java" />
+        <option value="$PROJECT_DIR$/RMIDemo.java" />
+        <option value="$PROJECT_DIR$/RMIDemoImpl.java" />
+        <option value="$PROJECT_DIR$/RMIDemoServer.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="510" />
+    <option name="y" value="544" />
     <option name="width" value="2515" />
-    <option name="height" value="1418" />
+    <option name="height" value="1400" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -239,17 +193,17 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StockMarket" />
+              <option name="myItemId" value="rmi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StockMarket" />
+              <option name="myItemId" value="rmi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StockMarket" />
+              <option name="myItemId" value="rmi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -259,19 +213,37 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.RMIDemoServer">
+    <configuration default="false" name="RMIDemoServer" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="RMIDemoServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="rmi" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -363,7 +335,14 @@
       <patterns />
       <method />
     </configuration>
-    <list size="0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.RMIDemoServer" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.RMIDemoServer" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -372,40 +351,41 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="043b3388-eccc-4e1f-b852-b52db17e9044" name="Default" comment="" />
-      <created>1392748613959</created>
-      <updated>1392748613959</updated>
+      <changelist id="fdb77172-c893-4092-9f36-5071679d2d79" name="Default" comment="" />
+      <created>1393173497487</created>
+      <updated>1393173497487</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2515" height="1418" extended-state="1" />
+    <frame x="510" y="544" width="2515" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2694859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14697523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -440,7 +420,7 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="LIMIT_HISTORY" value="true" />
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
@@ -468,113 +448,60 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StockServerPOA.java">
+    <entry file="file://$PROJECT_DIR$/ABC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="22" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0">
+        <state line="2" column="32" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StockServerPOAImpl.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/rmi/Remote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
+        <state line="49" column="17" selection-start="1310" selection-end="1310" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StockServerHelper.java">
+    <entry file="file://$PROJECT_DIR$/ABC_Stub.jad">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="33" selection-start="1432" selection-end="1432" vertical-scroll-proportion="0.0">
+        <state line="19" column="53" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StockServerOperations.java">
+    <entry file="file://$PROJECT_DIR$/ABC_Stub.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+        <state line="3" column="19" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/CosNaming/NamingContextExtOperations.java">
+    <entry file="file://$PROJECT_DIR$/RMIDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="20" selection-start="818" selection-end="844" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="7" column="68" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/com/sun/corba/se/impl/naming/cosnaming/NamingContextDataStore.java">
+    <entry file="file://$PROJECT_DIR$/RMIDemoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="9" selection-start="1391" selection-end="1391" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/com/sun/corba/se/impl/naming/cosnaming/NamingContextImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="656" column="44" selection-start="29410" selection-end="29422" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="6" column="73" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/com/sun/corba/se/impl/naming/pcosnaming/NamingContextImpl.java">
+    <entry file="file://$PROJECT_DIR$/RMIDemoServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="880" column="55" selection-start="37323" selection-end="37335" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/CosNaming/NamingContextOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_StockServerStub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StockServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="46" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StockServerClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="14" selection-start="890" selection-end="896" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/CORBA/ORB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="509" column="41" selection-start="20203" selection-end="20203" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UseStockServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="37" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/org/omg/PortableServer/POAOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="0" selection-start="7525" selection-end="7525" vertical-scroll-proportion="0.86326194">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StockSymbolHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="505" selection-end="515" vertical-scroll-proportion="0.28515008">
+        <state line="8" column="15" selection-start="235" selection-end="288" vertical-scroll-proportion="0.12179487">
           <folding />
         </state>
       </provider>
