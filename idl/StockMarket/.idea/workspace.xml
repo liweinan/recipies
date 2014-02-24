@@ -16,7 +16,7 @@
     <file path="/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173519564" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173528722" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/.idea/misc.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173522657" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175181068" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393264220623" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/ABC_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174020043" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174554609" ignored="false" />
     <file path="/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174551697" ignored="false" />
@@ -24,8 +24,30 @@
     <file path="/RMIDemoImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174722369" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/RMIDemoServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174828730" ignored="false" />
     <file path="/RMIDemoServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174820149" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175179856" ignored="false" />
-    <file path="/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175100934" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393176133092" ignored="false" />
+    <file path="/RMIDemoClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393176131058" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/RMIDemoImpl_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393175414463" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../jboss-vfs/pom.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393241840104" ignored="false" />
+    <file path="/Dummy.txt" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393241840104" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../jboss-vfs/checkstyle.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393241840104" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263276265" ignored="false" />
+    <file path="/ChatClient.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393259471317" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatClientImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263269946" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatClientDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263272375" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263262248" ignored="false" />
+    <file path="/ChatServer.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393261266442" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatServerImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263250674" ignored="false" />
+    <file path="/ChatServerImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393262749750" ignored="false" />
+    <file path="/ChatClientDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393260193314" ignored="false" />
+    <file path="/ChatClientImpl.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393260059020" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatServerDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263259242" ignored="false" />
+    <file path="/ChatServerDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393260217299" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatServerImpl_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263254747" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/chat/ChatClientImpl_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263265448" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ChatClientImpl_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263375393" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ChatServerImpl_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263375393" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ChatClientDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263781362" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/ChatServerDriver.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393263802756" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
