@@ -3,6 +3,7 @@ import java.rmi.Naming;
 /**
  * @author <a href="mailto:l.weinan@gmail.com">Weinan Li</a>
  */
+// rmiregistry must be run in class directory!!!
 public class RMIDemoServer {
     // http://www.youtube.com/watch?v=3fq4AdaiGFA
     public static void main(String[] args) throws Exception {

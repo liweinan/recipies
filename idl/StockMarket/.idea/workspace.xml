@@ -16,7 +16,7 @@
     <file path="/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173519564" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/ABC.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173528722" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/.idea/misc.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393173522657" ignored="false" />
-    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393264220623" ignored="false" />
+    <file path="$PROJECT_DIR$/../../rmi/.idea/workspace.xml" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393264559587" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/ABC_Stub.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174020043" ignored="false" />
     <file path="$PROJECT_DIR$/../../rmi/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174554609" ignored="false" />
     <file path="/RMIDemo.java" changelist="043b3388-eccc-4e1f-b852-b52db17e9044" time="1393174551697" ignored="false" />
@@ -402,7 +402,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2515" height="1418" extended-state="1" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />

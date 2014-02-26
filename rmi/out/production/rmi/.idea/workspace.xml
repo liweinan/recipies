@@ -7,7 +7,7 @@
     <file path="/ABC.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393173519564" ignored="false" />
     <file path="/RMIDemo.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174551698" ignored="false" />
     <file path="/RMIDemoImpl.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174722369" ignored="false" />
-    <file path="/RMIDemoServer.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393264955540" ignored="false" />
+    <file path="/RMIDemoServer.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393174820149" ignored="false" />
     <file path="/RMIDemoClient.java" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393176131058" ignored="false" />
     <file path="$PROJECT_DIR$/../../jboss-vfs/pom.xml" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393241840104" ignored="false" />
     <file path="/Dummy.txt" changelist="fdb77172-c893-4092-9f36-5071679d2d79" time="1393241840104" ignored="false" />
@@ -84,7 +84,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/RMIDemoServer.java" line="10" class="RMIDemoServer" package="">
+      <breakpoint url="file://$PROJECT_DIR$/RMIDemoServer.java" line="9" class="RMIDemoServer" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -110,6 +110,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="ChatServer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChatServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="17" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatServerImpl_Stub.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChatServerImpl_Stub.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="19" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ChatClientImpl_Stub.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChatClientImpl_Stub.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -137,51 +155,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatServerDriver.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ChatServerDriver.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ChatServerDriver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="15" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
+            <state line="10" column="15" selection-start="260" selection-end="260" vertical-scroll-proportion="0.23227383">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatClientImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChatClientImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="69" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RMIDemoServer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RMIDemoServer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RMIDemoServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="15" selection-start="490" selection-end="490" vertical-scroll-proportion="0.32518336">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="334" column="70" selection-start="12308" selection-end="12308" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#12958#13683#0" expanded="true" />
-                <element signature="e#13664#13665#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RMIDemoImpl_Stub.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RMIDemoImpl_Stub.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="19" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
+            <state line="13" column="33" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -207,6 +193,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="RMIDemoImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RMIDemoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="73" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -218,6 +213,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/RMIDemoImpl.java" />
+        <option value="$PROJECT_DIR$/RMIDemoServer.java" />
         <option value="$PROJECT_DIR$/RMIDemoImpl_Stub.java" />
         <option value="$PROJECT_DIR$/RMIDemoClient.java" />
         <option value="$PROJECT_DIR$/chat/ChatServerImpl.java" />
@@ -232,7 +228,6 @@
         <option value="$PROJECT_DIR$/ChatServerImpl_Stub.java" />
         <option value="$PROJECT_DIR$/ChatClientDriver.java" />
         <option value="$PROJECT_DIR$/ChatServerDriver.java" />
-        <option value="$PROJECT_DIR$/RMIDemoServer.java" />
       </list>
     </option>
   </component>
@@ -318,7 +313,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.RMIDemoServer">
+  <component name="RunManager" selected="Application.ChatServerDriver">
     <configuration default="false" name="RMIDemoServer" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="RMIDemoServer" />
@@ -478,8 +473,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.RMIDemoServer" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ChatServerDriver" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ChatServerDriver" />
+        <item index="1" class="java.lang.String" itemvalue="Application.RMIDemoServer" />
         <item index="2" class="java.lang.String" itemvalue="Application.ChatServerDriver" />
         <item index="3" class="java.lang.String" itemvalue="Application.RMIDemoClient" />
       </list>
@@ -594,6 +589,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/RMIDemoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="73" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/io/ObjectInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="369" column="0" selection-start="16731" selection-end="16731" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/jre/lib/rt.jar!/sun/rmi/registry/RegistryImpl_Stub.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="27" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" />
@@ -612,6 +619,15 @@
     <entry file="file://$PROJECT_DIR$/ChatClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="17" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -653,32 +669,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RMIDemoClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChatServerDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="15" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChatClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="69" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RMIDemoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="73" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RMIDemoClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -692,26 +692,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RMIDemoImpl_Stub.java">
+    <entry file="file://$PROJECT_DIR$/RMIDemoServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="19" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
+        <state line="13" column="33" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
+    <entry file="file://$PROJECT_DIR$/ChatServerDriver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="334" column="70" selection-start="12308" selection-end="12308" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#12958#13683#0" expanded="true" />
-            <element signature="e#13664#13665#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RMIDemoServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="15" selection-start="490" selection-end="490" vertical-scroll-proportion="0.32518336">
+        <state line="10" column="15" selection-start="260" selection-end="260" vertical-scroll-proportion="0.23227383">
           <folding />
         </state>
       </provider>
