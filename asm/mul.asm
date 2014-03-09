@@ -5,11 +5,10 @@ section .data
 section .text
 global main 
 main:
-	mov eax, 4 ; sys_write
-	mov ebx, 1 ; fd
-	mov ecx, hello
-	mov edx, len
-	int 80h
+	mov ax, 0FFFh
+	mov cx, 0FFFh
+	mul cx 			; fff x fff = ffe001
+;;; ax = e001, dx = ff
 	
 	mov eax, 1 ; sys_exit
 	mov ebx, 0 ; ret 0

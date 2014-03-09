@@ -15,4 +15,3 @@ offset.o: offset.c
 
 offset: offset.o
 	readelf -s mod1.o | grep _GLOBAL_OFFSET_TABLE_
-

@@ -14,7 +14,10 @@ shift_bits.o: shift_bits.asm
 hello: hello.o
 	ld -e main -o hello hello.o 
 hello.o: hello.asm
-	nasm -f elf64 -g -F stabs -g hello.asm -l hello.lst
+	nasm -f elf -g -F stabs -g hello.asm -l hello.lst
+hello2: hello2.asm
+	nasm -f elf -g -F stabs -g hello2.asm -l hello.lst
+	gcc -o hello2 hello2.o  
 xlat: xlat.o
 	ld -o xlat xlat.o
 xlat.o: xlat.asm
