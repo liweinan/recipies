@@ -22,7 +22,7 @@ _output:
 	int 80h
 
 	pop eax
-	aaa ; clear ah (30h)
+	aaa ; clear higher nybbles (30h) 
 	dec al
 	jnz _output
 _exit:	
