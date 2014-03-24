@@ -3,8 +3,8 @@ section .bss
 section .data
 
 section .text
-global _start 
-_start:
+global main 
+main:
 	
 	mov eax, 1 ; sys_exit
 	mov ebx, 0 ; ret 0

@@ -3,8 +3,8 @@ section .data
 	len: equ 13
 
 section .text
-global main 
-main:
+global _start
+_start:
 	mov eax, 4 ; sys_write
 	mov ebx, 1 ; fd
 	mov ecx, hello

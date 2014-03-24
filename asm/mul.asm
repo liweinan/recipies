@@ -10,6 +10,11 @@ main:
 	mul cx 			; fff x fff = ffe001
 ;;; ax = e001, dx = ff
 	
+	xor eax, eax
+	mov al, 1
+	mov ah, 2
+	mul ah ; al * ah to ax
+
 	mov eax, 1 ; sys_exit
 	mov ebx, 0 ; ret 0
 	int 80h

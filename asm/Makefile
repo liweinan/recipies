@@ -1,8 +1,15 @@
 default: xlat xlat2 sandbox push_esp shift_bits hello inline_data macro_label stosb loop movsb nested_loop argnum boiler puts
+
 sandbox: sandbox.o
 	ld -o sandbox sandbox.o
+
 sandbox.o: sandbox.asm
 	nasm -f elf64 -g -F stabs sandbox.asm -l sandbox.lst
+
+showargs1: showargs1.asm
+	nasm -f elf -g -F stabs showargs1.asm -l showargs1.lst
+	ld -o showargs1 showargs1.o
+
 push_esp: push_esp.o
 	ld -o push_esp push_esp.o
 push_esp.o: push_esp.asm
