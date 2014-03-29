@@ -56,6 +56,13 @@ endian: endian.c lib/common.c
 ptr: ptr.c
 	cc ptr.c -o ptr
 
+union: union.c
+	cc union.c -o union
+
+vis: vis.c
+	cc vis.c -o vis
+	./vis
+
 clean:
 	rm *.o
 	rm *.tmp
