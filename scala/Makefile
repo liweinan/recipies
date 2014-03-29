@@ -31,6 +31,9 @@ apptraits: compile-apptraits
 compile-apptraits:
 	fsc apptraits.scala
 
+traits: traits.scala
+	scala traits.scala
+
 clean:
 	rm *.class
 

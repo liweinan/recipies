@@ -18,4 +18,7 @@ int main(void) {
     printf("0xff + 0xff: %x\n", 0xff + 0xff);
     int i = 0xffffffff;
     printf("0xff ff ff ff + i: %x\n", 0xffffffff + i); // overflow
+    
+    printf("sizeof i: %d\n", sizeof i);
+    printf("sizeof(i): %d\n", sizeof(i));
 }

@@ -1,0 +1,4 @@
+#!/bin/sh
+nasm -f elf -g -F stabs $1.asm -l $1.lst
+ld -o $1 $1.o
+

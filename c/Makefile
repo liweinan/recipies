@@ -56,12 +56,20 @@ endian: endian.c lib/common.c
 ptr: ptr.c
 	cc ptr.c -o ptr
 
+<<<<<<< HEAD
 union: union.c
 	cc union.c -o union
 
 vis: vis.c
 	cc vis.c -o vis
 	./vis
+=======
+const_game: const_game.c
+	cc const_game.c -o const_game
+
+decl: decl.c
+	cc decl.c -o decl
+>>>>>>> ebf213a19a19a6293a2f3fa67e5b9cce1e3ee1e6
 
 clean:
 	rm *.o

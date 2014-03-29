@@ -75,7 +75,7 @@ linker_name2:linker_name
 
 
 play_with_ldconfig: linker_name2
-	@sudo rm -f /usr/lib/libdemo*
+	@sudo rm -f /usr/lib/libdemo.so.1.0.*
 	sudo mv libdemo.so.1.0.1 /usr/lib
 	sudo ldconfig -v | grep libdemo
 	@sudo rm -f /usr/lib/libdemo.so
@@ -89,3 +89,8 @@ play_with_ldconfig: linker_name2
 use_linker_name: linker_name
 	gcc -g -Wall -o prog_linker_name prog.c -L. -ldemo
 	LD_LIBRARY_PATH=. ./prog_linker_name
+
+play_with_rpath: shared_lib prog.c
+	-@rm prog_with_rpath
+	gcc -g -Wall -Wl,-rpath,. -o prog_with_rpath prog.c libfoo.so
+	./prog_with_rpath

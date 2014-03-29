@@ -1,8 +1,15 @@
 default: xlat xlat2 sandbox push_esp shift_bits hello inline_data macro_label stosb loop movsb nested_loop argnum boiler puts
+
 sandbox: sandbox.o
 	ld -o sandbox sandbox.o
+
 sandbox.o: sandbox.asm
-	nasm -f elf -g -F stabs sandbox.asm -l sandbox.lst
+	nasm -f elf64 -g -F stabs sandbox.asm -l sandbox.lst
+
+showargs1: showargs1.asm
+	nasm -f elf -g -F stabs showargs1.asm -l showargs1.lst
+	ld -o showargs1 showargs1.o
+
 push_esp: push_esp.o
 	ld -o push_esp push_esp.o
 push_esp.o: push_esp.asm
@@ -12,11 +19,12 @@ shift_bits: shift_bits.o
 shift_bits.o: shift_bits.asm
 	nasm -f elf -g -F stabs shift_bits.asm -l shift_bits.lst
 hello: hello.o
-	#gcc -o hello hello.o
 	ld -e main -o hello hello.o 
 hello.o: hello.asm
-	#nasm -f elf -l hello.lst  hello.asm
-	nasm -f macho -g hello.asm
+	nasm -f elf -g -F stabs -g hello.asm -l hello.lst
+hello2: hello2.asm
+	nasm -f elf -g -F stabs -g hello2.asm -l hello.lst
+	gcc -o hello2 hello2.o  
 xlat: xlat.o
 	ld -o xlat xlat.o
 xlat.o: xlat.asm
@@ -65,3 +73,8 @@ puts: puts.o
 	gcc puts.o -o puts
 puts.o: puts.asm
 	nasm -f elf -g -F stabs puts.asm
+cpuid: cpuid.asm
+	as -o cpuid.o cpuid.asm
+	ld -o cpuid cpuid.o
+banana: banana.c
+	cc banana.c -o banana
