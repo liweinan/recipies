@@ -1,0 +1,10 @@
+tmpfile:=$(shell mktemp -d /tmp/.XXXXX)
+
+all: main do-install
+
+main: main.c
+
+do-install: main.c
+	install ./main.c $(tmpfile)
+
+.PHONY: all

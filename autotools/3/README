@@ -1,0 +1,7 @@
+master:3 weinanli$ autoscan
+master:3 weinanli$ ls
+README         autoscan.log   configure.scan main.c
+
+master:3 weinanli$ mv configure.scan configure.ac
+
+master:3 weinanli$ autoreconf

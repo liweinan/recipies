@@ -1,0 +1,26 @@
+# @configure_input@
+# @PACKAGE_NAME@
+# @PACKAGE_VERSION@
+# @srcdir@
+
+greeting="Hello, Martians!"
+
+Makefile: Makefile.in config.status src/Makefile.in
+	./config.status $@
+
+# A rule to rebuild config.status when configure changes
+config.status: configure
+	./config.status --recheck
+
+configure: configure.ac
+	autoreconf
+	./configure
+
+play: Makefile
+	@echo ${greeting}
+
+clean:
+	rm -rf config.status configure Makefile src/Makefile autom4te.cache config.log
+
+.PHONY: play
+
