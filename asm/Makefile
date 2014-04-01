@@ -9,7 +9,9 @@ sandbox.o: sandbox.asm
 showargs1: showargs1.asm
 	nasm -f elf -g -F stabs showargs1.asm -l showargs1.lst
 	ld -o showargs1 showargs1.o
-
+aaa: aaa.asm
+	nasm -f elf -g -F stabs aaa.asm -l aaa.lst
+	ld -o aaa aaa.o
 push_esp: push_esp.o
 	ld -o push_esp push_esp.o
 push_esp.o: push_esp.asm
