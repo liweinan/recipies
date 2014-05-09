@@ -1,5 +1,5 @@
 class DirectedGraph
-  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo
+  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo, :paths
 
   class Vertex
     attr_accessor :out_degree, :in_degree
@@ -93,6 +93,8 @@ class DirectedGraph
   def connected?(from, to)
     @__flags = []
     @__marked = []
+    @paths = []
+    @__path = []
     __connected?(from, to)
     @__flags.include?(true)
   end
@@ -104,6 +106,7 @@ class DirectedGraph
   private
   def __connected?(from, to)
     @__marked << from
+    @__path << from
     if from == to
       (@__flags << true)
       return
@@ -113,11 +116,14 @@ class DirectedGraph
       next if (vertexFrom == from || @__marked.include?(vertexFrom))
       if vertexFrom == to
         @__flags << true
+        @paths << @__path
+        @__path = []
         return
       end
       __connected?(vertexFrom, to)
     end
     @__flags << false
+    @__path.pop
   end
 end
 
@@ -152,20 +158,16 @@ class DirectedCycle
   def cycle(diagraph, vertex)
     return @marked if has_cycle?
     @marked << vertex
-    puts "vertex: #{vertex}"
     diagraph.vertexesFrom[vertex.key] ||= []
     diagraph.vertexesFrom[vertex.key].each do |vertexFrom|
-      puts "vertexFrom: #{vertexFrom}"
       if @marked.include?(vertexFrom)
         @has_cycle = true
         @marked = @marked[(@marked.index(vertexFrom))..(@marked.length-1)]
-        puts "marked: #{@marked.each.map { |marked| marked.key }}"
         return @marked
       else
         cycle(diagraph, vertexFrom)
         return @marked if has_cycle?
       end
-      puts "pop: #{@marked.pop}"
     end
     @marked
   end
@@ -196,15 +198,15 @@ dc = DirectedCycle.new
 dc.cycle(dg, dg.getVertex('0'))
 dc.marked
 puts '-' * 36
+puts "3  -> 6? #{dg.connected?(dg.getVertex('3'), dg.getVertex('6'))}"
+puts "1  -> 2? #{dg.connected?(dg.getVertex('1'), dg.getVertex('2'))}"
+puts "2  -> 1? #{dg.connected?(dg.getVertex('2'), dg.getVertex('1'))}"
+p dg.paths.each.map {|path| path.each.map { |vertex| "#{vertex} "}}
+puts "1 <-> 2? #{dg.strongly_connected?(dg.getVertex('1'), dg.getVertex('2'))}"
 puts "0  -> 5? #{dg.connected?(dg.getVertex('0'), dg.getVertex('5'))}"
 puts "5  -> 0? #{dg.connected?(dg.getVertex('5'), dg.getVertex('0'))}"
-puts "1  -> 2? #{dg.connected?(dg.getVertex('1'), dg.getVertex('2'))}"
-puts "3  -> 6? #{dg.connected?(dg.getVertex('3'), dg.getVertex('6'))}"
-puts "0  -> 4? #{dg.connected?(dg.getVertex('0'), dg.getVertex('4'))}"
-puts "0 <-  4? #{dg.connected?(dg.getVertex('4'), dg.getVertex('0'))}"
-puts "1 <-> 1? #{dg.strongly_connected?(dg.getVertex('1'), dg.getVertex('1'))}"
-puts "4 <-> 5? #{dg.strongly_connected?(dg.getVertex('4'), dg.getVertex('5'))}"
-puts "0 <-> 4? #{dg.strongly_connected?(dg.getVertex('4'), dg.getVertex('0'))}"
+p dg.paths.each.map {|path| path.each.map { |vertex| "#{vertex} "}}
+puts "5 <-> 0? #{dg.strongly_connected?(dg.getVertex('5'), dg.getVertex('0'))}"
 puts '-' * 36
 puts dg.edgesTo.each.map { |toVertex, edges|
   "#{edges.each.map { |edge| edge.from.key }} -> #{toVertex}" }
