@@ -1,5 +1,5 @@
 class DirectedGraph
-  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo, :paths
+  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo, :edgesFrom, :paths
 
   class Vertex
     attr_accessor :out_degree, :in_degree
@@ -25,11 +25,12 @@ class DirectedGraph
   end
 
   class Edge
-    attr_accessor :from, :to
+    attr_accessor :from, :to, :weight
 
-    def initialize(from, to)
+    def initialize(from, to, weight = 1)
       @from = from
       @to = to
+      @weight = weight
     end
 
     def ==(other)
@@ -46,11 +47,14 @@ class DirectedGraph
     @edges = []
     @vertexesFrom = {}
     @edgesTo = {}
+    @edgesFrom = {}
     File.open(infile, "r") do |f|
       while (line = f.gets)
         pair = line.split " "
         (0..1).each do |idx|
-          (@vertexes << Vertex.new(pair[idx])) unless @vertexes.include?(Vertex.new(pair[idx]))
+          if pair[idx] != nil
+            (@vertexes << Vertex.new(pair[idx])) unless @vertexes.include?(Vertex.new(pair[idx]))
+          end
         end
 
         edge = Edge.new(Vertex.new(pair[0]), Vertex.new(pair[1]))
@@ -61,6 +65,9 @@ class DirectedGraph
 
           @edgesTo[edge.to.key] = [] if @edgesTo[edge.to.key] == nil
           @edgesTo[edge.to.key] << edge
+
+          @edgesFrom[edge.from.key] = [] if @edgesFrom[edge.from.key] == nil
+          @edgesFrom[edge.from.key] << edge
 
           @vertexesFrom[edge.from.key] = [] if @vertexesFrom[edge.from.key] == nil
           @vertexesFrom[edge.from.key] << edge.to
@@ -172,41 +179,3 @@ class DirectedCycle
     @marked
   end
 end
-
-
-dg = DirectedGraph.new
-dg.read("example.in")
-dg.vertexes.map { |vertex| puts vertex.dump }
-puts '-' * 36
-dg.edges.map { |edge| puts edge }
-puts '-' * 36
-dg.vertexesFrom.each_key do |key|
-  puts "#{key} -> #{dg.vertexesFrom[key].map { |val| "#{val.key} " }}"
-end
-puts '-' * 36
-puts dg.pv
-puts '-' * 36
-ddfs = DirectedDepthFirstSearch.new
-ddfs.search(dg, dg.getVertex('0'))
-puts ddfs.marked
-puts '-' * 36
-dc = DirectedCycle.new
-dc.cycle(dg, dg.getVertex('5'))
-dc.marked
-puts '-' * 36
-dc = DirectedCycle.new
-dc.cycle(dg, dg.getVertex('0'))
-dc.marked
-puts '-' * 36
-puts "3  -> 6? #{dg.connected?(dg.getVertex('3'), dg.getVertex('6'))}"
-puts "1  -> 2? #{dg.connected?(dg.getVertex('1'), dg.getVertex('2'))}"
-puts "2  -> 1? #{dg.connected?(dg.getVertex('2'), dg.getVertex('1'))}"
-p dg.paths.each.map {|path| path.each.map { |vertex| "#{vertex} "}}
-puts "1 <-> 2? #{dg.strongly_connected?(dg.getVertex('1'), dg.getVertex('2'))}"
-puts "0  -> 5? #{dg.connected?(dg.getVertex('0'), dg.getVertex('5'))}"
-puts "5  -> 0? #{dg.connected?(dg.getVertex('5'), dg.getVertex('0'))}"
-p dg.paths.each.map {|path| path.each.map { |vertex| "#{vertex} "}}
-puts "5 <-> 0? #{dg.strongly_connected?(dg.getVertex('5'), dg.getVertex('0'))}"
-puts '-' * 36
-puts dg.edgesTo.each.map { |toVertex, edges|
-  "#{edges.each.map { |edge| edge.from.key }} -> #{toVertex}" }
