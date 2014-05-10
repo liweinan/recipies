@@ -31,6 +31,7 @@ class DirectedGraph
       @from = from
       @to = to
       @weight = weight
+      @__either = @from
     end
 
     def ==(other)
@@ -39,6 +40,19 @@ class DirectedGraph
 
     def to_s
       "#{@from} -> #{@to}"
+    end
+
+    def either
+      @__either = (@__either == @from ? @to : @from)
+      @__either
+    end
+
+    def other(vertex)
+      vertex == @from ? @to : @from
+    end
+
+    def <=>(other)
+      self.weight <=> other.weight
     end
   end
 
@@ -85,6 +99,14 @@ class DirectedGraph
       if vertex.key == val
         return vertex
       end
+    end
+    nil
+  end
+
+  def getEdge(from, to)
+    that = Edge.new(from, to)
+    @edges.each do |this|
+      return this if this == that
     end
     nil
   end
@@ -176,6 +198,6 @@ class DirectedCycle
         return @marked if has_cycle?
       end
     end
-    @marked
+    @marked.pop
   end
 end

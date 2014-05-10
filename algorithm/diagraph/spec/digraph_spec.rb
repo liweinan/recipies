@@ -20,12 +20,39 @@ describe DirectedGraph do
     expected_edges.should =~ @dg.edges.each.map { |edge| "#{edge.from} -> #{edge.to}" }
   end
 
-  # dg = DirectedGraph.new
-  # dg.read("example.in")
-  # dg.vertexes.map { |vertex| puts vertex.dump }
-  # puts '-' * 36
-  # dg.edges.map { |edge| puts edge }
-  # puts '-' * 36
+  it "should_have_correct_edge_methods" do
+    from = @dg.getVertex("0")
+    to = @dg.getVertex("5")
+    edge = @dg.getEdge(from, to)
+    edge.should_not be_nil
+    edge.from.should == from
+    edge.to.should == to
+
+    edge.either.should == to
+    edge.either.should == from
+
+    edge.other(to).should == from
+
+    from2 = @dg.getVertex("4")
+    to2 = @dg.getVertex("3")
+    edge2 = @dg.getEdge(from2, to2)
+    edge2.should_not be_nil
+
+    (edge <=> edge2).should == 0
+    edge2.weight = 2
+    (edge <=> edge2).should < 0
+    edge2.weight = 0
+    (edge <=> edge2).should > 0
+  end
+
+  it "should_have_cycle" do
+    dc = DirectedCycle.new
+    dc.cycle(@dg, @dg.getVertex('0'))
+    dc.has_cycle?.should be_true
+    (dc.marked.each.map { |vertex| vertex.key }).should == ["0", "5", "4", "6", "12", "11", "8", "7"]
+  end
+
+
   # dg.vertexesFrom.each_key do |key|
   #   puts "#{key} -> #{dg.vertexesFrom[key].map { |val| "#{val.key} " }}"
   # end
