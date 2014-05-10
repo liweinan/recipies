@@ -1,5 +1,5 @@
 class DirectedGraph
-  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo
+  attr_accessor :vertexesFrom, :vertexes, :edges, :edgesTo, :edgesFrom
 
   class Vertex
     attr_accessor :out_degree, :in_degree
@@ -25,11 +25,12 @@ class DirectedGraph
   end
 
   class Edge
-    attr_accessor :from, :to
+    attr_accessor :from, :to, :weight
 
-    def initialize(from, to)
+    def initialize(from, to, weight = 1)
       @from = from
       @to = to
+      @weight = weight
     end
 
     def ==(other)
@@ -46,6 +47,7 @@ class DirectedGraph
     @edges = []
     @vertexesFrom = {}
     @edgesTo = {}
+    @edgesFrom = {}
     File.open(infile, "r") do |f|
       while (line = f.gets)
         pair = line.split " "
@@ -61,6 +63,9 @@ class DirectedGraph
 
           @edgesTo[edge.to.key] = [] if @edgesTo[edge.to.key] == nil
           @edgesTo[edge.to.key] << edge
+
+          @edgesFrom[edge.from.key] = [] if @edgesFrom[edge.from.key] == nil
+          @edgesFrom[edge.from.key] << edge
 
           @vertexesFrom[edge.from.key] = [] if @vertexesFrom[edge.from.key] == nil
           @vertexesFrom[edge.from.key] << edge.to
