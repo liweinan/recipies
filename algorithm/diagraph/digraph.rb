@@ -140,7 +140,7 @@ class DirectedGraph
       (@__flags << true)
       return
     end
-
+    @vertexesFrom[from.key] ||= []
     @vertexesFrom[from.key].each do |vertexFrom|
       next if (vertexFrom == from || @__marked.include?(vertexFrom))
       if vertexFrom == to
@@ -185,17 +185,17 @@ class DirectedCycle
   end
 
   def cycle(diagraph, vertex)
-    return @marked if has_cycle?
+    return if has_cycle?
     @marked << vertex
     diagraph.vertexesFrom[vertex.key] ||= []
     diagraph.vertexesFrom[vertex.key].each do |vertexFrom|
       if @marked.include?(vertexFrom)
         @has_cycle = true
         @marked = @marked[(@marked.index(vertexFrom))..(@marked.length-1)]
-        return @marked
+        return
       else
         cycle(diagraph, vertexFrom)
-        return @marked if has_cycle?
+        return if has_cycle?
       end
     end
     @marked.pop
