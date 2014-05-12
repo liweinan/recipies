@@ -1,4 +1,6 @@
 require_relative '../digraph'
+require_relative '../directed_cycle'
+require_relative '../directed_depth_first_search'
 require 'rspec'
 
 describe DirectedGraph do

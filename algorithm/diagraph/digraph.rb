@@ -64,15 +64,16 @@ class DirectedGraph
     @edgesFrom = {}
     File.open(infile, "r") do |f|
       while (line = f.gets)
-        pair = line.split " "
+        next if line.start_with?('#')
+        items = line.split " "
         (0..1).each do |idx|
-          if pair[idx] != nil
-            (@vertexes << Vertex.new(pair[idx])) unless @vertexes.include?(Vertex.new(pair[idx]))
+          if items[idx] != nil
+            (@vertexes << Vertex.new(items[idx])) unless @vertexes.include?(Vertex.new(items[idx]))
           end
         end
-
-        edge = Edge.new(Vertex.new(pair[0]), Vertex.new(pair[1]))
-        if pair[0] != nil && pair[1] != nil && !@edges.include?(edge)
+        @weight = items[3]
+        edge = Edge.new(Vertex.new(items[0]), Vertex.new(items[1]))
+        if items[0] != nil && items[1] != nil && !@edges.include?(edge)
           (@edges << edge)
           getVertex(edge.from).out_degree += 1
           getVertex(edge.to).in_degree += 1
@@ -153,51 +154,5 @@ class DirectedGraph
     end
     @__flags << false
     @__path.pop
-  end
-end
-
-class DirectedDepthFirstSearch
-  attr_accessor :marked
-
-  def initialize
-    @marked = []
-  end
-
-  def search(diagraph, vertex)
-    @marked << vertex
-    diagraph.vertexesFrom[vertex.key] ||= []
-    diagraph.vertexesFrom[vertex.key].each do |vertexFrom|
-      search(diagraph, vertexFrom) unless @marked.include?(vertexFrom)
-    end
-  end
-end
-
-class DirectedCycle
-  attr_accessor :marked, :has_cycle
-
-  def initialize
-    @marked = []
-    @has_cycle = false
-  end
-
-  def has_cycle?
-    @has_cycle
-  end
-
-  def cycle(diagraph, vertex)
-    return if has_cycle?
-    @marked << vertex
-    diagraph.vertexesFrom[vertex.key] ||= []
-    diagraph.vertexesFrom[vertex.key].each do |vertexFrom|
-      if @marked.include?(vertexFrom)
-        @has_cycle = true
-        @marked = @marked[(@marked.index(vertexFrom))..(@marked.length-1)]
-        return
-      else
-        cycle(diagraph, vertexFrom)
-        return if has_cycle?
-      end
-    end
-    @marked.pop
   end
 end
