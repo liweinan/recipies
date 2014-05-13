@@ -13,12 +13,12 @@ Then /^I should see sample data read in$/ do
 end
 
 Then /^I should see adjacent and non-adjacent vertexes$/ do
-  @dg.adjacent?('7', '8').should be_true
-  @dg.adjacent?('0', '8').should be_false
+  @dg.adjacent?(7, 8).should be_true
+  @dg.adjacent?(0, 8).should be_false
 end
 
 Then /^I should see degree_of method work$/ do
-  @dg.degree_of('9').should == 4
+  @dg.degree_of(9).should == 4
 end
 
 Then /^I should see max_degree method work$/ do

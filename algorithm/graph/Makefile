@@ -1,5 +1,5 @@
 test:
 	rspec spec
-	cucumber features
+	# cucumber features
 
 .PHONY: test

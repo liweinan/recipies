@@ -1,32 +1,68 @@
 # Self loop is allowed
 # Repeated edges will be removed
 class UndirectedGraph
-  attr_accessor :vertexes, :edges, :adjacents
+  attr_accessor :vertexes, :edges, :adjacents, :weights
+
+  class Edge
+    attr_accessor :v, :w
+
+    def initialize(v, w)
+      @v = v.to_i
+      @w = w.to_i
+    end
+
+    def ==(other)
+      return true if other == nil
+      eql = false
+      eql = true if @v == other.v && @w == other.w
+      eql = true if @v == other.w && @w == other.v
+      eql
+    end
+  end
+
+  def createEdge(v, w)
+    if v == nil || w == nil
+      return nil
+    end
+    Edge.new(v, w)
+  end
+
+  def getEdge(v, w)
+    __edge = createEdge(v, w)
+    return nil if __edge == nil
+
+    @edges.each do |edge|
+      if edge == __edge
+        return edge
+      end
+    end
+    return nil
+  end
 
   def read(infile)
     @vertexes = []
     @edges = []
+    @weights = {}
     @adjacents = {}
     File.open(infile, "r") do |f|
       while (line = f.gets)
         pair = line.split " "
 
         (0..1).each do |idx| # [0] -> from [1] -> to
-          (@vertexes << pair[idx]) unless @vertexes.include?(pair[idx])
+          (@vertexes << pair[idx].to_i) unless @vertexes.include?(pair[idx].to_i)
         end
 
-        edge = {:from => pair[0], :to => pair[1]}
-        if (pair[0] != nil && pair[1] != nil) &&
-            !@edges.include?(edge) &&
-            !@edges.include?({:from => pair[1], :to => pair[0]}) # Undirected
-          (@edges << edge)
+        edge = createEdge(pair[0], pair[1])
+        unless @edges.include?(edge)
+          @edges << edge
+          @weights[edge] = pair[2]
         end
 
         (0..1).each do |idx|
-          vertexes = @adjacents[pair[idx]] # Adjacent vertexes
+          vertexes = @adjacents[pair[idx].to_i] # Adjacent vertexes
           (vertexes = []) if vertexes.nil?
-          vertexes << pair[(idx+1)%2]
-          @adjacents[pair[idx]] = vertexes.uniq
+          vertexes << pair[(idx+1)%2].to_i
+          @adjacents[pair[idx].to_i] = vertexes.uniq
         end
       end
     end
@@ -35,7 +71,7 @@ class UndirectedGraph
   def pv
     puts "graph G {"
     @edges.each do |edge|
-      puts "#{edge[:from]} -- #{edge[:to]};"
+      puts "#{edge.v} -- #{edge.w};"
     end
     puts "}"
   end
@@ -102,7 +138,7 @@ class UndirectedGraph
     self_loops = []
     number = 0
     @edges.each do |edge|
-      if edge[:from] == edge[:to]
+      if edge.v == edge.w
         self_loops << edge
         number += 1
       end
