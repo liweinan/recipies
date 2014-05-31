@@ -38,8 +38,8 @@ describe UndirectedGraph do
     e3 = UndirectedGraph::Edge.new(0, 3, 3)
     pq = PQueue.new
     pq << e1
-    pq << e2
     pq << e3
+    pq << e2
     pq.pop.should == e3
   end
 end
