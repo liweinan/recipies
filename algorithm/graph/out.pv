@@ -1,0 +1,19 @@
+graph G {
+0 -- 5 [color = blue, label = "1"];
+4 -- 3 [color = blue, label = "2"];
+0 -- 1 [color = blue, label = "3"];
+9 -- 12 [color = blue, label = "4"];
+6 -- 4 [color = blue, label = "5"];
+5 -- 4 [color = blue, label = "6"];
+0 -- 2 [color = blue, label = "7"];
+11 -- 12 [color = blue, label = "8"];
+9 -- 10 [color = blue, label = "9"];
+0 -- 6 [color = blue, label = "10"];
+7 -- 8 [color = blue, label = "11"];
+9 -- 11 [color = blue, label = "12"];
+5 -- 3 [color = blue, label = "13"];
+9 -- 8 [color = blue, label = "14"];
+1 -- 1 [color = blue, label = "15"];
+2 -- 2 [color = blue, label = "16"];
+0 -- 9 [color = blue, label = "17"];
+}

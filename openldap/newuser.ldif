@@ -1,0 +1,8 @@
+dn: cn=Thomas Reid,dc=my-domain,dc=com
+objectclass: person
+cn: Thomas Reid
+sn: Reid
+userPassword:: DSFSUYJKHGH=
+telephoneNumber: 555-555-5555
+seeAlso: uid=david,ou=users,dc=example,dc=com
+description: A basic user.

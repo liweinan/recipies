@@ -10,7 +10,7 @@ describe MinimumSpanningTree do
 
   it "should generate MST correctly" do
     mst = MinimumSpanningTree.new(@ug)
-    p mst.marked
+    # p mst.marked
   end
 
 

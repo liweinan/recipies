@@ -32,7 +32,4 @@ describe UndirectedGraph do
     @dg.adjacents == {0 => [5, 1, 2, 6], 5 => [0, 4, 3], 4 => [3, 6, 5], 3 => [4, 5], 1 => [0, 1], 9 => [12, 10, 11, 8], 12 => [9, 11], 6 => [4, 0], 2 => [0, 2], 11 => [12, 9], 10 => [9], 7 => [8], 8 => [7, 9]}
   end
 
-  it "should have weights" do
-    @dg.weights.should_not be_nil
-  end
 end

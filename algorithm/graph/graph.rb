@@ -1,18 +1,23 @@
 # Self loop is allowed
 # Repeated edges will be removed
 class UndirectedGraph
-  attr_accessor :vertexes, :edges, :adjacents, :weights
+  attr_accessor :vertexes, :edges, :adjacents
 
   class Edge
-    attr_accessor :v, :w
+    attr_accessor :v, :w, :weight
 
-    def initialize(v, w)
+    def initialize(v, w, weight)
       @v = v.to_i
       @w = w.to_i
+      @weight = weight.to_i
     end
 
     def ==(other)
-      return true if other == nil
+      # other == nil will cause recursive error
+      if nil == other
+        return true
+      end
+
       eql = false
       eql = true if @v == other.v && @w == other.w
       eql = true if @v == other.w && @w == other.v
@@ -20,11 +25,9 @@ class UndirectedGraph
     end
   end
 
-  def createEdge(v, w)
-    if v == nil || w == nil
-      return nil
-    end
-    Edge.new(v, w)
+  def createEdge(v, w, weight=0)
+    return nil if v == nil || w == nil
+    Edge.new(v, w, weight)
   end
 
   def getEdge(v, w)
@@ -39,23 +42,25 @@ class UndirectedGraph
     return nil
   end
 
-  def read(infile)
+  def initialize
     @vertexes = []
     @edges = []
-    @weights = {}
     @adjacents = {}
+  end
+
+  def read(infile)
     File.open(infile, "r") do |f|
       while (line = f.gets)
         pair = line.split " "
 
-        (0..1).each do |idx| # [0] -> from [1] -> to
+        (0..1).each do |idx| # [0] -> v [1] -> w
           (@vertexes << pair[idx].to_i) unless @vertexes.include?(pair[idx].to_i)
         end
 
-        edge = createEdge(pair[0], pair[1])
+        edge = createEdge(pair[0], pair[1], pair[2])
+
         unless @edges.include?(edge)
           @edges << edge
-          @weights[edge] = pair[2]
         end
 
         (0..1).each do |idx|
@@ -66,12 +71,13 @@ class UndirectedGraph
         end
       end
     end
+
   end
 
-  def pv
+  def pv()
     puts "graph G {"
     @edges.each do |edge|
-      puts "#{edge.v} -- #{edge.w};"
+      puts "#{edge.v} -- #{edge.w} [label = \"#{edge.weight}\"];"
     end
     puts "}"
   end
@@ -146,14 +152,4 @@ class UndirectedGraph
     [number, self_loops]
   end
 end
-
-#p ud.edges
-#ud.pv
-#puts "adjacent?(7, 8) -> #{ud.adjacent?('7', '8')}"
-#puts "adjacent?(0, 8) -> #{ud.adjacent?('0', '8')}"
-#puts "degree_of(9) -> #{ud.degree_of('9')}"
-#puts "max_degree -> #{ud.max_degree}"
-#puts "average_degree -> #{ud.average_degree}"
-#puts "number_of_self_loops -> #{ud.number_of_self_loops}"
-#puts "adjacents-> #{ud.adjacents}"
 
