@@ -15,13 +15,25 @@ class UndirectedGraph
     def ==(other)
       # other == nil will cause recursive error
       if nil == other
-        return true
+        return false
       end
 
       eql = false
       eql = true if @v == other.v && @w == other.w
       eql = true if @v == other.w && @w == other.v
       eql
+    end
+
+    def <=>(other)
+      self.weight <=> other.weight
+    end
+
+    def inspect
+      "#{v} -> #{w}"
+    end
+
+    def to_s
+      inspect
     end
   end
 
@@ -59,15 +71,17 @@ class UndirectedGraph
 
         edge = createEdge(pair[0], pair[1], pair[2])
 
-        unless @edges.include?(edge)
-          @edges << edge
-        end
+        if edge != nil
+          unless @edges.include?(edge)
+            @edges << edge
+          end
 
-        (0..1).each do |idx|
-          vertexes = @adjacents[pair[idx].to_i] # Adjacent vertexes
-          (vertexes = []) if vertexes.nil?
-          vertexes << pair[(idx+1)%2].to_i
-          @adjacents[pair[idx].to_i] = vertexes.uniq
+          (0..1).each do |idx|
+            vertexes = @adjacents[pair[idx].to_i] # Adjacent vertexes
+            (vertexes = []) if vertexes.nil?
+            vertexes << pair[(idx+1)%2].to_i
+            @adjacents[pair[idx].to_i] = vertexes.uniq
+          end
         end
       end
     end

@@ -7,8 +7,8 @@ require 'pqueue'
 class PQueueTest < MicroTest::TestCase
   include AE::Legacy::Assertions
 
-  ARY_TEST   = [2,6,1,3,8,15,0,-4,7,8,10]
-  ARY_TEST_2 = [25,10,5,13,16,9,16,12]
+  ARY_TEST = [2, 6, 1, 3, 8, 15, 0, -4, 7, 8, 10]
+  ARY_TEST_2 = [25, 10, 5, 13, 16, 9, 16, 12]
 
   def test_initialize_empty
     PQueue.new
@@ -23,9 +23,9 @@ class PQueueTest < MicroTest::TestCase
   end
 
   def test_initialize_with_custom_comparison
-    PQueue.new {|a,b| b<=>a}
-    PQueue.new([3]) {|a,b| b<=>a}
-    PQueue.new(ARY_TEST) {|a,b| b<=>a}
+    PQueue.new { |a, b| b<=>a }
+    PQueue.new([3]) { |a, b| b<=>a }
+    PQueue.new(ARY_TEST) { |a, b| b<=>a }
   end
 
   def test_top
@@ -90,7 +90,7 @@ class PQueueTest < MicroTest::TestCase
     q = PQueue.new(ARY_TEST)
     assert_equal(ARY_TEST.sort, q.to_a)
     q = PQueue.new(0..4)
-    assert_equal([0,1,2,3,4], q.to_a)
+    assert_equal([0, 1, 2, 3, 4], q.to_a)
   end
 
   def pop_array
@@ -110,13 +110,15 @@ class PQueueTest < MicroTest::TestCase
 
   def test_equal
     assert_equal(PQueue.new, PQueue.new)
-    assert_equal(PQueue.new(ARY_TEST), PQueue.new(ARY_TEST.sort_by{rand}))
+    assert_equal(PQueue.new(ARY_TEST), PQueue.new(ARY_TEST.sort_by { rand }))
   end
 
   def test_swap
     q = PQueue.new
     assert_nil(q.swap(6))
     assert_equal(6, q.top)
+
+    # ARY_TEST = [2, 6, 1, 3, 8, 15, 0, -4, 7, 8, 10]
 
     q = PQueue.new(ARY_TEST)
     h = PQueue.new(ARY_TEST)
@@ -155,24 +157,24 @@ class PQueueTest < MicroTest::TestCase
   end
 
   def test_reheap
-    q = PQueue.new([2,4,5])
+    q = PQueue.new([2, 4, 5])
     q << 6
-    q.to_a.assert == [2,4,5,6]
+    q.to_a.assert == [2, 4, 5, 6]
     q << 1
-    q.to_a.assert == [1,2,4,5,6]
+    q.to_a.assert == [1, 2, 4, 5, 6]
     q << 3
-    q.to_a.assert == [1,2,3,4,5,6]
+    q.to_a.assert == [1, 2, 3, 4, 5, 6]
 
-    q = PQueue.new([100,5,25])
-    q.to_a.assert == [5,25,100]
+    q = PQueue.new([100, 5, 25])
+    q.to_a.assert == [5, 25, 100]
     q << 17
-    q.to_a.assert == [5,17,25,100]
+    q.to_a.assert == [5, 17, 25, 100]
     q << 0
-    q.to_a.assert == [0,5,17,25,100]
+    q.to_a.assert == [0, 5, 17, 25, 100]
     q << -5
-    q.to_a.assert == [-5,0,5,17,25,100]
+    q.to_a.assert == [-5, 0, 5, 17, 25, 100]
     q << 100
-    q.to_a.assert == [-5,0,5,17,25,100,100]
+    q.to_a.assert == [-5, 0, 5, 17, 25, 100, 100]
   end
 
 end

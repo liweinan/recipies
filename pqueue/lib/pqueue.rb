@@ -207,7 +207,7 @@ class PQueue
 
   #
   # Push element onto queue while popping off and returning the next element.
-  # This is qquivalent to successively calling #pop and #push(v).
+  # This is equivalent to successively calling #pop and #push(v).
   #
   def swap(v)
     r = pop
