@@ -1,5 +1,5 @@
 # my-domain.com
-dn: dc=my-domain,dc=com
+dn: uid=weli,ou=Users,dc=my-domain,dc=com
 changetype: modify
-delete objectClass
-objectClass: top
+replace: roomNumber
+roomNumber: 302

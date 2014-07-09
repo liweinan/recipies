@@ -1,45 +1,36 @@
-dn: dc=my-domain,dc=com
-objectClass: top
-objectClass: dcObject
-objectClass: organization
-dc: my-domain
-o: ExmapleCo
-
 dn: ou=Users,dc=my-domain,dc=com
 ou: Users
 cn: LDAP Users
 description: Users of LDAP
 objectClass: groupOfNames
-member: uid=matt,ou=Users,dc=my-domain,dc=com
-# objectClass: organizationalUnit
+member: uid=weli,ou=Users,dc=my-domain,dc=com
 
-# Matt Butcher
-dn: uid=matt,ou=Users,dc=my-domain,dc=com
+# Weinan Li
+dn: uid=weli,ou=Users,dc=my-domain,dc=com
 ou: Users
 # Name info:
-uid: Matt
-cn: Matt Butcher
-sn: Butcher
-givenName: Matt
-givenName: Matthew
-displayName: Matt Butcher
+uid: weli
+cn: Weinan Li
+sn: Weinan
+givenName: Weinan
+displayName: Weinan Li
 # Work Info:
-title: Systems Integrator
+title: Software Engineer
 description: Systems Integration and IT for Example.Com
 employeeType: Employee
 departmentNumber: 001
 employeeNumber: 001-08-98
-mail: mbutcher@my-domain.com
-mail: matt@my-domain.com
+mail: weli@my-domain.com
+mail: weli@my-domain.com
 roomNumber: 301
 telephoneNumber: +1 555 555 4321
 mobile: +1 555 555 6789
-st: Illinois
-l: Chicago
-street: 1234 Cicero Ave.
+st: Beijing
+l: Beijing
+street: Foo Bar
 # Home Info:
 homePhone: +1 555 555 9876
-homePostalAddress: 1234 home street $ Chicago, IL $ 60699-1234
+homePostalAddress: Foo Bar
 # Misc:
 userPassword: secret
 preferredLanguage: en-us,en-gb
