@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app='myapp'>
+<head>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <input ng-model="name" type="text" placeholder="Your name"/>
+    <h1>{{ name | uppercase }}</h1>
+    {{ today | date:'medium' }}
+    {{ ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter:'e' }}
+    {{ [
+            {
+                'name': 'Ari',
+                'City': 'San Francisco',
+                'favorite food': 'Pizza'
+            },
+            {
+                'name': 'Nate',
+                'City': 'San Francisco',
+                'favorite food': 'Indian Food'
+            }
+        ] | filter:{'favorite food': 'Pizza' }
+    }}
+    {{ ['Ari', 'likes', 'to', 'travel'] | filter:isCapitalized | json }}
+    <script>
+        var rootElement = document.querySelector("html");
+        var element = angular.element(rootElement);
+        var scope = element.scope();        
+        angular.module('myapp', []).run(
+            function($rootScope) {
+                $rootScope.name="Weinan Li";
+            });
+        // angular.module('myapp').factory('SessionService', function($q, #http) {
+        //     var service = {
+        //         getCurrentUser: function() {
+        //                 debugger;
+        //                 return; 
+        //             }
+        //     }
+        //     return service;
+        // });
+    </script>
+</body>
+</html>
