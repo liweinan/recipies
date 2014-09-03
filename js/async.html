@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+        (function () {
+            var queue = [], paused = false, results;  // not paused at beginning
+
+            this.test = function (name, fn) {
+                queue.push(function () {
+                    results = document.getElementById("results");
+                    results = assert(true, name).appendChild(
+                            document.createElement("ul")); // just to show test title on page
+                    fn(); // execute the test
+                });
+                runTest();
+            };
+
+            this.pause = function () {
+                paused = true
+            };
+
+            this.resume = function () { // resume can try to run another test
+                paused = false;
+                setTimeout(runTest, 1);
+            }
+
+            function runTest() {
+                if (!paused && queue.length) {
+                    queue.shift()();
+                    if (!paused) {
+                        resume(); // fire another test
+                    }
+                }
+            }
+
+            this.assert = function assert(value, desc) {
+                var li = document.createElement("li");
+                li.className = value ? "pass" : "fail";
+                li.appendChild(document.createTextNode(desc));
+                results.appendChild(li);
+                if (!value) {
+                    li.parentNode.parentNode.className = "fail";
+                }
+                return li;
+            }
+        })();
+
+        window.onload = function () {
+            test("Async Test #1", function () {
+                pause(); // block all the other tests
+                setTimeout(function () {
+                    assert(true, "First test completed");
+                    resume();
+                }, 1000); // run the test, and unblock(resume) other tests after it's finished
+            });
+
+            test("Async Test #2", function () {
+                pause();
+                setTimeout(function () {
+                    assert(true, "Second test completed");
+                    resume();
+                }, 1000);
+            });
+        }
+    </script>
+    <style>
+        #results li.pass {
+            color: green;
+        }
+
+        #results li.fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<ul id="results"></ul>
+</body>
