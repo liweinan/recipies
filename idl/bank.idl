@@ -1,6 +1,0 @@
-module Bank {
-  interface Customer {
-  };
-  interface Account {
-  };
-};

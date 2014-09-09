@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE person [
+        <!ELEMENT first_name (#PCDATA)>
+        <!ELEMENT last_name (#PCDATA)>
+        <!ELEMENT name (first_name, last_name)>
+        <!ELEMENT profession (#PCDATA)>
+        <!ELEMENT person (name, profession*)>
+        <!ATTLIST profession outdated CDATA #REQUIRED>
+        ]>
+
+<person>
+    <name>
+        <first_name>Alan</first_name>
+        <last_name>Turing</last_name>
+    </name>
+    <profession outdated="false">computer scientist</profession>
+    <profession outdated="false">mathematician</profession>
+    <profession outdated="false">cryptographer</profession>
+</person>
