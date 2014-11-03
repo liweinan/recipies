@@ -4,7 +4,6 @@ Release:	1%{?dist}
 Summary: foo
 License: ASL 2.0
 URL: http://example.com
-#Source0: foo.tgz
 
 BuildRequires: zip
 Requires: zip
@@ -13,14 +12,10 @@ Requires: zip
 foo
 
 %prep
-#%setup ${name}
 
 %build
-#%configure
-#make
 
 %install
-#%make_install
 
 %files
 
