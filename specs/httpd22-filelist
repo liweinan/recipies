@@ -1,0 +1,379 @@
+etc
+├── httpd22
+│   ├── conf
+│   │   ├── httpd.conf
+│   │   └── magic
+│   ├── conf.d
+│   │   ├── README
+│   │   ├── proxy_ajp.conf
+│   │   └── welcome.conf
+│   ├── logs -> ../../var/log/httpd22
+│   ├── modules -> ../../usr/lib64/httpd22/modules
+│   └── run -> ../../var/run/httpd22
+├── logrotate.d
+│   └── httpd22
+└── sysconfig
+    └── httpd22
+usr
+├── lib
+│   └── systemd
+│       └── system
+│           └── httpd22.service
+├── lib64
+│   └── httpd22
+│       └── modules
+│           ├── mod_actions.so
+│           ├── mod_alias.so
+│           ├── mod_asis.so
+│           ├── mod_auth_basic.so
+│           ├── mod_auth_digest.so
+│           ├── mod_authn_alias.so
+│           ├── mod_authn_anon.so
+│           ├── mod_authn_dbd.so
+│           ├── mod_authn_dbm.so
+│           ├── mod_authn_default.so
+│           ├── mod_authn_file.so
+│           ├── mod_authnz_ldap.so
+│           ├── mod_authz_dbm.so
+│           ├── mod_authz_default.so
+│           ├── mod_authz_groupfile.so
+│           ├── mod_authz_host.so
+│           ├── mod_authz_owner.so
+│           ├── mod_authz_user.so
+│           ├── mod_autoindex.so
+│           ├── mod_cache.so
+│           ├── mod_cern_meta.so
+│           ├── mod_cgi.so
+│           ├── mod_cgid.so
+│           ├── mod_dav.so
+│           ├── mod_dav_fs.so
+│           ├── mod_dbd.so
+│           ├── mod_deflate.so
+│           ├── mod_dir.so
+│           ├── mod_disk_cache.so
+│           ├── mod_dumpio.so
+│           ├── mod_env.so
+│           ├── mod_expires.so
+│           ├── mod_ext_filter.so
+│           ├── mod_filter.so
+│           ├── mod_headers.so
+│           ├── mod_ident.so
+│           ├── mod_include.so
+│           ├── mod_info.so
+│           ├── mod_ldap.so
+│           ├── mod_log_config.so
+│           ├── mod_log_forensic.so
+│           ├── mod_logio.so
+│           ├── mod_mime.so
+│           ├── mod_mime_magic.so
+│           ├── mod_negotiation.so
+│           ├── mod_proxy.so
+│           ├── mod_proxy_ajp.so
+│           ├── mod_proxy_balancer.so
+│           ├── mod_proxy_connect.so
+│           ├── mod_proxy_ftp.so
+│           ├── mod_proxy_http.so
+│           ├── mod_proxy_scgi.so
+│           ├── mod_reqtimeout.so
+│           ├── mod_rewrite.so
+│           ├── mod_setenvif.so
+│           ├── mod_speling.so
+│           ├── mod_status.so
+│           ├── mod_substitute.so
+│           ├── mod_suexec.so
+│           ├── mod_unique_id.so
+│           ├── mod_userdir.so
+│           ├── mod_usertrack.so
+│           ├── mod_version.so
+│           └── mod_vhost_alias.so
+├── sbin
+│   ├── apachectl22
+│   ├── htcacheclean22
+│   ├── httpd22
+│   ├── httpd22.event22
+│   ├── httpd22.worker22
+│   ├── httxt2dbm22
+│   ├── rotatelogs22
+│   └── suexec22
+└── share
+    ├── doc
+    │   └── httpd22-2.2.26
+    │       ├── ABOUT_APACHE
+    │       ├── CHANGES
+    │       ├── LICENSE
+    │       ├── NOTICE
+    │       ├── README
+    │       └── VERSIONING
+    └── man
+        └── man8
+            ├── ab22.8.gz
+            ├── apachectl22.8.gz
+            ├── apxs22.8.gz
+            ├── htcacheclean22.8.gz
+            ├── httpd22.8.gz
+            ├── logresolve22.8.gz
+            ├── rotatelogs22.8.gz
+            └── suexec22.8.gz
+var
+├── cache
+│   └── mod_proxy
+├── lib
+│   └── dav
+├── log
+│   └── httpd22
+├── run
+│   └── httpd22
+└── www
+    └── httpd22
+        ├── cgi-bin
+        ├── error
+        │   ├── HTTP_BAD_GATEWAY.html.var
+        │   ├── HTTP_BAD_REQUEST.html.var
+        │   ├── HTTP_FORBIDDEN.html.var
+        │   ├── HTTP_GONE.html.var
+        │   ├── HTTP_INTERNAL_SERVER_ERROR.html.var
+        │   ├── HTTP_LENGTH_REQUIRED.html.var
+        │   ├── HTTP_METHOD_NOT_ALLOWED.html.var
+        │   ├── HTTP_NOT_FOUND.html.var
+        │   ├── HTTP_NOT_IMPLEMENTED.html.var
+        │   ├── HTTP_PRECONDITION_FAILED.html.var
+        │   ├── HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
+        │   ├── HTTP_REQUEST_TIME_OUT.html.var
+        │   ├── HTTP_REQUEST_URI_TOO_LARGE.html.var
+        │   ├── HTTP_SERVICE_UNAVAILABLE.html.var
+        │   ├── HTTP_UNAUTHORIZED.html.var
+        │   ├── HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
+        │   ├── HTTP_VARIANT_ALSO_VARIES.html.var
+        │   ├── README
+        │   ├── contact.html.var
+        │   ├── include
+        │   │   ├── bottom.html
+        │   │   ├── spacer.html
+        │   │   └── top.html
+        │   └── noindex.html
+        ├── html
+        └── icons
+            ├── README
+            ├── README.html
+            ├── a.gif
+            ├── a.png
+            ├── alert.black.gif
+            ├── alert.black.png
+            ├── alert.red.gif
+            ├── alert.red.png
+            ├── apache_pb.gif
+            ├── apache_pb.png
+            ├── apache_pb2.gif
+            ├── apache_pb2.png
+            ├── apache_pb2_ani.gif
+            ├── back.gif
+            ├── back.png
+            ├── ball.gray.gif
+            ├── ball.gray.png
+            ├── ball.red.gif
+            ├── ball.red.png
+            ├── binary.gif
+            ├── binary.png
+            ├── binhex.gif
+            ├── binhex.png
+            ├── blank.gif
+            ├── blank.png
+            ├── bomb.gif
+            ├── bomb.png
+            ├── box1.gif
+            ├── box1.png
+            ├── box2.gif
+            ├── box2.png
+            ├── broken.gif
+            ├── broken.png
+            ├── burst.gif
+            ├── burst.png
+            ├── c.gif
+            ├── c.png
+            ├── comp.blue.gif
+            ├── comp.blue.png
+            ├── comp.gray.gif
+            ├── comp.gray.png
+            ├── compressed.gif
+            ├── compressed.png
+            ├── continued.gif
+            ├── continued.png
+            ├── dir.gif
+            ├── dir.png
+            ├── diskimg.gif
+            ├── diskimg.png
+            ├── down.gif
+            ├── down.png
+            ├── dvi.gif
+            ├── dvi.png
+            ├── f.gif
+            ├── f.png
+            ├── folder.gif
+            ├── folder.open.gif
+            ├── folder.open.png
+            ├── folder.png
+            ├── folder.sec.gif
+            ├── folder.sec.png
+            ├── forward.gif
+            ├── forward.png
+            ├── generic.gif
+            ├── generic.png
+            ├── generic.red.gif
+            ├── generic.red.png
+            ├── generic.sec.gif
+            ├── generic.sec.png
+            ├── hand.right.gif
+            ├── hand.right.png
+            ├── hand.up.gif
+            ├── hand.up.png
+            ├── icon.sheet.gif
+            ├── icon.sheet.png
+            ├── image1.gif
+            ├── image1.png
+            ├── image2.gif
+            ├── image2.png
+            ├── image3.gif
+            ├── image3.png
+            ├── index.gif
+            ├── index.png
+            ├── layout.gif
+            ├── layout.png
+            ├── left.gif
+            ├── left.png
+            ├── link.gif
+            ├── link.png
+            ├── movie.gif
+            ├── movie.png
+            ├── p.gif
+            ├── p.png
+            ├── patch.gif
+            ├── patch.png
+            ├── pdf.gif
+            ├── pdf.png
+            ├── pie0.gif
+            ├── pie0.png
+            ├── pie1.gif
+            ├── pie1.png
+            ├── pie2.gif
+            ├── pie2.png
+            ├── pie3.gif
+            ├── pie3.png
+            ├── pie4.gif
+            ├── pie4.png
+            ├── pie5.gif
+            ├── pie5.png
+            ├── pie6.gif
+            ├── pie6.png
+            ├── pie7.gif
+            ├── pie7.png
+            ├── pie8.gif
+            ├── pie8.png
+            ├── portal.gif
+            ├── portal.png
+            ├── ps.gif
+            ├── ps.png
+            ├── quill.gif
+            ├── quill.png
+            ├── right.gif
+            ├── right.png
+            ├── screw1.gif
+            ├── screw1.png
+            ├── screw2.gif
+            ├── screw2.png
+            ├── script.gif
+            ├── script.png
+            ├── small
+            │   ├── back.gif
+            │   ├── back.png
+            │   ├── binary.gif
+            │   ├── binary.png
+            │   ├── binhex.gif
+            │   ├── binhex.png
+            │   ├── blank.gif
+            │   ├── blank.png
+            │   ├── broken.gif
+            │   ├── broken.png
+            │   ├── burst.gif
+            │   ├── burst.png
+            │   ├── comp1.gif
+            │   ├── comp1.png
+            │   ├── comp2.gif
+            │   ├── comp2.png
+            │   ├── compressed.gif
+            │   ├── compressed.png
+            │   ├── continued.gif
+            │   ├── continued.png
+            │   ├── dir.gif
+            │   ├── dir.png
+            │   ├── dir2.gif
+            │   ├── dir2.png
+            │   ├── doc.gif
+            │   ├── doc.png
+            │   ├── forward.gif
+            │   ├── forward.png
+            │   ├── generic.gif
+            │   ├── generic.png
+            │   ├── generic2.gif
+            │   ├── generic2.png
+            │   ├── generic3.gif
+            │   ├── generic3.png
+            │   ├── image.gif
+            │   ├── image.png
+            │   ├── image2.gif
+            │   ├── image2.png
+            │   ├── index.gif
+            │   ├── index.png
+            │   ├── key.gif
+            │   ├── key.png
+            │   ├── movie.gif
+            │   ├── movie.png
+            │   ├── patch.gif
+            │   ├── patch.png
+            │   ├── ps.gif
+            │   ├── ps.png
+            │   ├── rainbow.gif
+            │   ├── rainbow.png
+            │   ├── sound.gif
+            │   ├── sound.png
+            │   ├── sound2.gif
+            │   ├── sound2.png
+            │   ├── tar.gif
+            │   ├── tar.png
+            │   ├── text.gif
+            │   ├── text.png
+            │   ├── transfer.gif
+            │   ├── transfer.png
+            │   ├── unknown.gif
+            │   ├── unknown.png
+            │   ├── uu.gif
+            │   └── uu.png
+            ├── sound1.gif
+            ├── sound1.png
+            ├── sound2.gif
+            ├── sound2.png
+            ├── sphere1.gif
+            ├── sphere1.png
+            ├── sphere2.gif
+            ├── sphere2.png
+            ├── tar.gif
+            ├── tar.png
+            ├── tex.gif
+            ├── tex.png
+            ├── text.gif
+            ├── text.png
+            ├── transfer.gif
+            ├── transfer.png
+            ├── unknown.gif
+            ├── unknown.png
+            ├── up.gif
+            ├── up.png
+            ├── uu.gif
+            ├── uu.png
+            ├── uuencoded.gif
+            ├── uuencoded.png
+            ├── world1.gif
+            ├── world1.png
+            ├── world2.gif
+            └── world2.png
+
+36 directories, 338 files
