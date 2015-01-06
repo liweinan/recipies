@@ -6,14 +6,18 @@
 %define apr apr
 %endif
 
-%define _with_zips 1
-%define _with_src_zips 1
-# If you want to build the zips,
-# give rpmbuild option '--with zips'
-%define with_zips %{?_with_zips:1}%{!?_with_zips:0}
-%define without_zips %{!?_with_zips:1}%{?_with_zips:0}
-%define with_src_zips %{?_with_src_zips:1}%{!?_with_src_zips:0}
-%define without_src_zips %{!?_without_src_zips:1}%{?_without_src_zips:0}
+%if "%{?rhel}" == "7"
+%ifarch x86_64
+%define with_zips 1
+%define with_src_zips 1
+%else
+%define with_zips 0
+%define with_src_zips 0
+%endif
+%else
+%define with_zips 0
+%define with_src_zips 0
+%endif
 
 %define jws 24
 %define docroot /var/www
@@ -24,15 +28,6 @@
 %define mmnisa %{mmn}%{__isa_name}%{__isa_bits}
 %define vstring Red Hat
 
-%define _with_zips 1
-%define _with_src_zips 1
-# If you want to build the zips,
-# give rpmbuild option '--with zips'
-%define with_zips %{?_with_zips:1}%{!?_with_zips:0}
-%define without_zips %{!?_with_zips:1}%{?_with_zips:0}
-%define with_src_zips %{?_with_src_zips:1}%{!?_with_src_zips:0}
-%define without_src_zips %{!?_without_src_zips:1}%{?_without_src_zips:0}
-
 # Drop automatic provides for module DSOs
 %{?filter_setup:
 %filter_provides_in %{_libdir}/httpd/modules/.*\.so$
@@ -42,7 +37,7 @@
 Summary: Apache HTTP Server
 Name: httpd%{jws}
 Version: 2.4.6
-Release: 30%{?dist}
+Release: 31%{?dist}
 URL: http://httpd.apache.org/
 Source0: http://www.apache.org/dist/httpd/httpd-%{version}.tar.bz2
 Source1: index.html
@@ -68,6 +63,7 @@ Source22: welcome.conf
 Source23: manual.conf
 Source24: 00-systemd.conf
 Source25: 01-session.conf
+Source26: proxy_ajp.conf
 # Documentation
 Source30: README.confd
 Source40: htcacheclean.service
@@ -117,6 +113,10 @@ Patch203: httpd-2.4.6-CVE-2014-0117.patch
 Patch204: httpd-2.4.6-CVE-2014-0118.patch
 Patch205: httpd-2.4.6-CVE-2014-0226.patch
 Patch206: httpd-2.4.6-CVE-2013-4352.patch
+
+# renaming patches
+Patch300: configure-apr-rename.patch
+
 License: ASL 2.0
 Group: System Environment/Daemons
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -143,6 +143,24 @@ Requires(post): systemd-units
 %description
 The Apache HTTP Server is a powerful, efficient, and extensible
 web server.
+
+%if %{with_zips}
+%package zip
+Summary:     Container for the zipped distribution of the Apache HTTP server.
+Group:       Development
+
+%description zip
+Container for the zipped distribution of the Apache HTTP server.
+%endif
+
+%if %{with_src_zips}
+%package src-zip
+Summary:     Container for the zipped source code of the Apache HTTP server.
+Group:       Development
+
+%description src-zip
+Container for the source code of the Apache HTTP server.
+%endif
 
 %package devel
 Group: Development/Libraries
@@ -290,12 +308,24 @@ fi
 
 : Building with MMN %{mmn}, MMN-ISA %{mmnisa} and vendor string '%{vstring}'
 
+# Fix for JBPAPP-3740
+sed -i -e '/  Installation$/{N;N;N;N;N;d;}' README
+
+%if %{with_src_zips}
+pushd $RPM_BUILD_DIR
+tar czf $RPM_BUILD_DIR/httpd-%{version}-src.tar.gz httpd-%{version}
+popd
+%endif
+
 %build
 # forcibly prevent use of bundled apr, apr-util, pcre
 rm -rf srclib/{apr,apr-util,pcre}
 
 # regenerate configure scripts
 autoheader && autoconf || exit 1
+
+# patch configure
+patch -p1 < %{PATCH300}
 
 # Before configure; fix location of build dir in generated apxs
 %{__perl} -pi -e "s:\@exp_installbuilddir\@:%{_libdir}/httpd%{jws}/build:g" \
@@ -366,8 +396,40 @@ make DESTDIR=$RPM_BUILD_ROOT install
 mv $RPM_BUILD_ROOT%{_libdir}/httpd/build $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/
 rm -rf $RPM_BUILD_ROOT%{_libdir}/httpd/build
 
+# install var directory
+mkdir $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/var
+
+# install conf file/directory
+mkdir $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d
+install -m 644 $RPM_SOURCE_DIR/README.confd \
+    $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d/README
+for f in ssl.conf welcome.conf manual.conf proxy_ajp.conf; do
+  install -m 644 $RPM_SOURCE_DIR/$f $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d/$f
+done
+
+rm $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/*.conf
+install -m 644 $RPM_SOURCE_DIR/httpd.conf \
+   $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/httpd.conf
+
 #JBPAPP-9446
 sed -i -e "s:LoadModule proxy_balancer_module:#LoadModule proxy_balancer_module:" $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/httpd.conf
+
+mkdir $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
+install -m 644 $RPM_SOURCE_DIR/httpd.sysconf \
+   $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/httpd%{jws}
+
+# https://issues.jboss.org/browse/JBPAPP-10212
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/run/httpd%{jws}
+
+# for holding mod_dav lock database
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/dav
+
+# create a prototype session cache
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/cache/mod_ssl%{jws}
+touch $RPM_BUILD_ROOT%{_localstatedir}/cache/mod_ssl%{jws}/scache.{dir,pag,sem}
+
+# create cache root
+mkdir $RPM_BUILD_ROOT%{_localstatedir}/cache/mod_proxy
 
 %if "%{?rhel}" == "7"
 # Install systemd service files
@@ -378,16 +440,66 @@ for s in httpd htcacheclean; do
 done
 %endif
 
+
+# Handle contentdir
+mv $RPM_BUILD_ROOT%{docroot}/{html,cgi-bin} $RPM_BUILD_ROOT%{contentdir}/
+mkdir -p $RPM_BUILD_ROOT%{contentdir}/{html,error}
+mkdir $RPM_BUILD_ROOT%{contentdir}/noindex
+install -m 644 -p $RPM_SOURCE_DIR/index.html \
+        $RPM_BUILD_ROOT%{contentdir}/noindex/index.html
+rm -rf %{contentdir}/htdocs
+
+# remove manual sources
+find $RPM_BUILD_ROOT%{contentdir}/manual \( \
+    -name \*.xml -o -name \*.xml.* -o -name \*.ent -o -name \*.xsl -o -name \*.dtd \
+    \) -print0 | xargs -0 rm -f
+
+# Strip the manual down just to English and replace the typemaps with flat files:
+set +x
+for f in `find $RPM_BUILD_ROOT%{contentdir}/manual -name \*.html -type f`; do
+   if test -f ${f}.en; then
+      cp ${f}.en ${f}
+      rm ${f}.*
+   fi
+done
+set -x
+
+# Clean Document Root
+rm -v $RPM_BUILD_ROOT%{contentdir}/html/*.html \
+      $RPM_BUILD_ROOT%{contentdir}/cgi-bin/*
+
+# Symlink for the powered-by-$DISTRO image:
+ln -s ../../pixmaps/poweredby.png \
+        $RPM_BUILD_ROOT%{contentdir}/icons/poweredby.png
+
 %if %{with_zips}
-echo "" #placeholder for zip package
+pushd $RPM_BUILD_ROOT
+mkdir -p httpd/{include,lib/build,sbin,cache/mod_ssl%{jws},conf,conf.d,logs,run,var,modules,www/html,www/error}
+cp -r $RPM_SOURCE_DIR/index.html httpd/www/error/noindex.html
+cp -r $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d/* httpd/conf.d/
+cp -r $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/{httpd.conf,magic} httpd/conf/
+cp -r $RPM_BUILD_ROOT%{_localstatedir}/www/httpd%{jws}/{cgi-bin,error,icons} httpd/www
+cp -r $RPM_BUILD_ROOT%{_localstatedir}/cache/* httpd/cache/
+cp -r $RPM_BUILD_ROOT%{_sbindir}/* httpd/sbin/
+sed -e "s|/usr/sbin/httpd|./httpd|" -e "s|/etc/sysconfig/httpd|../conf/httpd.conf|" \
+ $RPM_BUILD_ROOT%{_sbindir}/apachectl > httpd/sbin/apachectl
+cp -r $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/modules/* httpd/modules/
+cp -r $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/build/* httpd/lib/build/
+cp -r $RPM_BUILD_ROOT%{_libdir}/* httpd/lib/
+rm -fr httpd/lib/httpd%{jws}
+cp -r $RPM_BUILD_ROOT%{_includedir}/httpd%{jws}/* httpd/include/
+
+#JBPAPP-3635
+zip -q -r httpd-%{version}.zip httpd
+rm -rf httpd
+popd
 %endif
 
 #Fix JBPAPP-3883
 sed -i -e "s|/usr/sbin/httpd|/usr/sbin/httpd%{jws}|" $RPM_BUILD_ROOT%{_sbindir}/apachectl
 
 # install conf file/directory
-mkdir $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d \
-      $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.modules.d
+mkdir $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.modules.d
 install -m 644 $RPM_SOURCE_DIR/README.confd \
     $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf.d/README
 
@@ -445,7 +557,6 @@ rm $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/*.conf
 install -m 644 -p $RPM_SOURCE_DIR/httpd.conf \
    $RPM_BUILD_ROOT%{_sysconfdir}/httpd%{jws}/conf/httpd.conf
 
-mkdir $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
 for s in httpd htcacheclean; do
   install -m 644 -p $RPM_SOURCE_DIR/${s}.sysconf \
                     $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/${s}%{jws}
@@ -477,37 +588,6 @@ cat > $RPM_BUILD_ROOT%{_sysconfdir}/rpm/macros.httpd%{jws} <<EOF
 %%_httpd_moddir %{_libdir}/httpd%{jws}/modules
 EOF
 
-# Handle contentdir
-mv $RPM_BUILD_ROOT%{docroot}/{html,cgi-bin} $RPM_BUILD_ROOT%{contentdir}/
-mkdir -p $RPM_BUILD_ROOT%{contentdir}/{html,error}
-mkdir $RPM_BUILD_ROOT%{contentdir}/noindex
-install -m 644 -p $RPM_SOURCE_DIR/index.html \
-        $RPM_BUILD_ROOT%{contentdir}/noindex/index.html
-rm -rf %{contentdir}/htdocs
-
-# remove manual sources
-find $RPM_BUILD_ROOT%{contentdir}/manual \( \
-    -name \*.xml -o -name \*.xml.* -o -name \*.ent -o -name \*.xsl -o -name \*.dtd \
-    \) -print0 | xargs -0 rm -f
-
-# Strip the manual down just to English and replace the typemaps with flat files:
-set +x
-for f in `find $RPM_BUILD_ROOT%{contentdir}/manual -name \*.html -type f`; do
-   if test -f ${f}.en; then
-      cp ${f}.en ${f}
-      rm ${f}.*
-   fi
-done
-set -x
-
-# Clean Document Root
-rm -v $RPM_BUILD_ROOT%{contentdir}/html/*.html \
-      $RPM_BUILD_ROOT%{contentdir}/cgi-bin/*
-
-# Symlink for the powered-by-$DISTRO image:
-ln -s ../../pixmaps/poweredby.png \
-        $RPM_BUILD_ROOT%{contentdir}/icons/poweredby.png
-
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/log/httpd%{jws}
 
 # symlinks for /etc/httpd
@@ -518,9 +598,16 @@ ln -s ../..%{_libdir}/httpd%{jws}/modules $RPM_BUILD_ROOT/etc/httpd%{jws}/module
 # Processing apxs
 sed -i "s|httpd/build|httpd%{jws}/build|" $RPM_BUILD_ROOT%{_bindir}/apxs%{jws}
 sed -i "s|%LIBDIR%/httpd|%LIBDIR%%{jws}/httpd|" $RPM_BUILD_ROOT%{_bindir}/apxs%{jws}
+%if "%{?rhel}" == "6"
+sed -i "s|apr-1|apr-jws3-1|" $RPM_BUILD_ROOT%{_bindir}/apxs%{jws}
+%endif
 
 # Processing config_vars.mk
 sed -i "s|httpd/build|httpd%{jws}/build|" $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/build/config_vars.mk
+
+%if "%{?rhel}" == "6"
+sed -i "s|apr-1|apr-jws3-1|" $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/build/config_vars.mk
+%endif
 
 # install http-ssl-pass-dialog
 mkdir -p $RPM_BUILD_ROOT%{_libexecdir}
@@ -636,6 +723,19 @@ if readelf -d $RPM_BUILD_ROOT%{_libdir}/httpd%{jws}/modules/*.so | grep TEXTREL;
    exit 1
 fi
 
+%if %{with_zips}
+install -dm 755 $RPM_BUILD_ROOT/%{_javadir}/jbossas-fordev
+# Copy over zip for the zip subpackage
+install -m 644 $RPM_BUILD_ROOT/httpd-%{version}.zip $RPM_BUILD_ROOT/%{_javadir}/jbossas-fordev/httpd-%{version}.zip
+rm $RPM_BUILD_ROOT/httpd-%{version}.zip
+%endif
+
+%if %{with_src_zips}
+install -dm 755 $RPM_BUILD_ROOT/%{_javadir}/jbossas-fordev
+# Copy over source the src-zip subpackage
+install -m 644 $RPM_BUILD_DIR/httpd-%{version}-src.tar.gz $RPM_BUILD_ROOT/%{_javadir}/jbossas-fordev/httpd-%{version}-src.tar.gz
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -738,6 +838,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/httpd%{jws}/conf.d/ssl.conf
 %attr(0700,apache,root) %dir %{_localstatedir}/cache/httpd%{jws}/ssl
 %{_libexecdir}/httpd-ssl-pass-dialog
+%attr(0600,apache,root) %ghost %{_localstatedir}/cache/mod_ssl%{jws}/scache.dir
+%attr(0600,apache,root) %ghost %{_localstatedir}/cache/mod_ssl%{jws}/scache.pag
+%attr(0600,apache,root) %ghost %{_localstatedir}/cache/mod_ssl%{jws}/scache.sem
 
 %files -n mod_proxy%{jws}_html
 %defattr(-,root,root)
@@ -766,7 +869,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/httpd%{jws}/build/*.sh
 %{_sysconfdir}/rpm/macros.httpd%{jws}
 
+%if %{with_zips}
+%files zip
+%defattr(0644,root,root,0755)
+%{_javadir}/jbossas-fordev/httpd-%{version}.zip
+%endif
+
+%if %{with_src_zips}
+%files src-zip
+%defattr(0644,root,root,0755)
+%{_javadir}/jbossas-fordev/httpd-%{version}-src.tar.gz
+%endif
+
 %changelog
+* Mon Nov 03 2014 Weinan Li <weli@redhat.com> - 2.4.7-31
+- Add zip bundle
+
 * Wed Oct 29 2014 Weinan Li <weli@redhat.com> - 2.4.7-30
 - Using apr-jws3 and apr-util-jws3 in el6
 
