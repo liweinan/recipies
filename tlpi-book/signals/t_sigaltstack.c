@@ -11,13 +11,13 @@
 /* Listing 21-3 */
 
 #define _GNU_SOURCE             /* Get strsignal() declaration from <string.h> */
+
 #include <string.h>
 #include <signal.h>
 #include "tlpi_hdr.h"
 
 static void
-sigsegvHandler(int sig)
-{
+sigsegvHandler(int sig) {
     int x;
 
     /* UNSAFE: This handler uses non-async-signal-safe functions
@@ -31,17 +31,15 @@ sigsegvHandler(int sig)
 }
 
 static void             /* A recursive function that overflows the stack */
-overflowStack(int callNum)
-{
+overflowStack(int callNum) {
     char a[100000];                     /* Make this stack frame large */
 
     printf("Call %4d - top of stack near %10p\n", callNum, &a[0]);
-    overflowStack(callNum+1);
+    overflowStack(callNum + 1);
 }
 
 int
-main(int argc, char *argv[])
-{
+main(int argc, char *argv[]) {
     stack_t sigstack;
     struct sigaction sa;
     int j;

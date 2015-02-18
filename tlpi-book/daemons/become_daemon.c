@@ -16,23 +16,28 @@
 #include "tlpi_hdr.h"
 
 int                                     /* Returns 0 on success, -1 on error */
-becomeDaemon(int flags)
-{
+becomeDaemon(int flags) {
     int maxfd, fd;
 
     switch (fork()) {                   /* Become background process */
-    case -1: return -1;
-    case 0:  break;                     /* Child falls through... */
-    default: _exit(EXIT_SUCCESS);       /* while parent terminates */
+        case -1:
+            return -1;
+        case 0:
+            break;                     /* Child falls through... */
+        default:
+            _exit(EXIT_SUCCESS);       /* while parent terminates */
     }
 
     if (setsid() == -1)                 /* Become leader of new session */
         return -1;
 
     switch (fork()) {                   /* Ensure we are not session leader */
-    case -1: return -1;
-    case 0:  break;
-    default: _exit(EXIT_SUCCESS);
+        case -1:
+            return -1;
+        case 0:
+            break;
+        default:
+            _exit(EXIT_SUCCESS);
     }
 
     if (!(flags & BD_NO_UMASK0))

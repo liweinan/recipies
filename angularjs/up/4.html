@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<body ng-controller="MainCtrl as ctrl">
+<h1>
+    {{ ctrl.helloMsg }}
+</h1>
+{{ ctrl.time }}
+
+<script src="angular1.2.19.js"></script>
+<script type="text/javascript">
+    angular.module('notesApp', []).controller('MainCtrl', [function () {
+        console.log('MainCtrl has been created');
+        this.helloMsg = 'Hello, Martian!';
+        var time = Date.now();
+    }])
+</script>
+</body>
+</html>

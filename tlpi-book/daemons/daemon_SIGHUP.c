@@ -28,8 +28,7 @@ static FILE *logfp;                 /* Log file stream */
    a trailing newline). Precede each message with a timestamp. */
 
 static void
-logMessage(const char *format, ...)
-{
+logMessage(const char *format, ...) {
     va_list argList;
     const char *TIMESTAMP_FMT = "%F %X";        /* = YYYY-MM-DD HH:MM:SS */
 #define TS_BUF_SIZE sizeof("YYYY-MM-DD HH:MM:SS")       /* Includes '\0' */
@@ -40,7 +39,7 @@ logMessage(const char *format, ...)
     t = time(NULL);
     loc = localtime(&t);
     if (loc == NULL ||
-           strftime(timestamp, TS_BUF_SIZE, TIMESTAMP_FMT, loc) == 0)
+            strftime(timestamp, TS_BUF_SIZE, TIMESTAMP_FMT, loc) == 0)
         fprintf(logfp, "???Unknown time????: ");
     else
         fprintf(logfp, "%s: ", timestamp);
@@ -54,8 +53,7 @@ logMessage(const char *format, ...)
 /* Open the log file 'logFilename' */
 
 static void
-logOpen(const char *logFilename)
-{
+logOpen(const char *logFilename) {
     mode_t m;
 
     m = umask(077);
@@ -75,8 +73,7 @@ logOpen(const char *logFilename)
 /* Close the log file */
 
 static void
-logClose(void)
-{
+logClose(void) {
     logMessage("Closing log file");
     fclose(logfp);
 }
@@ -87,8 +84,7 @@ logClose(void)
    from the file and write it to the log. */
 
 static void
-readConfigFile(const char *configFilename)
-{
+readConfigFile(const char *configFilename) {
     FILE *configfp;
 #define SBUF_SIZE 100
     char str[SBUF_SIZE];
@@ -105,17 +101,16 @@ readConfigFile(const char *configFilename)
 }
 
 static volatile sig_atomic_t hupReceived = 0;
-                        /* Set nonzero on receipt of SIGHUP */
+
+/* Set nonzero on receipt of SIGHUP */
 
 static void
-sighupHandler(int sig)
-{
+sighupHandler(int sig) {
     hupReceived = 1;
 }
 
 int
-main(int argc, char *argv[])
-{
+main(int argc, char *argv[]) {
     const int SLEEP_TIME = 15;      /* Time to sleep between messages */
     int count = 0;                  /* Number of completed SLEEP_TIME intervals */
     int unslept;                    /* Time remaining in sleep interval */
@@ -135,7 +130,7 @@ main(int argc, char *argv[])
 
     unslept = SLEEP_TIME;
 
-    for (;;) {
+    for (; ;) {
         unslept = sleep(unslept);       /* Returns > 0 if interrupted */
 
         if (hupReceived) {              /* If we got SIGHUP... */

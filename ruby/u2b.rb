@@ -29,7 +29,7 @@ class Main
           $is_code_sec = true
         end
 
-        $code_buffer << line.gsub(/'' (.*)\s*/, '\1')
+        $code_buffer << line.gsub(/''( ?.*)\s*/, '\1')
         next
       elsif line[0] == '>'
         if $is_quote_sec == false
